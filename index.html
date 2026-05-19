@@ -1,0 +1,2190 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Las Feliipas — Sabores al paso · La Plata</title>
+<meta name="description" content="Casa de comidas artesanal, pastelería y café. Av. 53 e/ 16 y 17, La Plata. Hecho a diario." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Raleway:wght@300;400;500;600&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+
+<style>
+/* ────────────────────────────────────────────────────────────────
+   DESIGN TOKENS
+   ──────────────────────────────────────────────────────────────── */
+:root{
+  --ivory: #f4ede0;
+  --ivory-2: #ebe1cf;
+  --ivory-3: #ded2bb;
+  --forest: #1f2a22;
+  --forest-2: #2a3a2f;
+  --forest-deep: #15201a;
+  --copper: #a26a3a;
+  --copper-2: #b9824f;
+  --ink: #1a1815;
+  --line: rgba(26,24,21,.12);
+  --line-light: rgba(244,237,224,.16);
+
+  --display: "Cormorant Garamond", "Times New Roman", serif;
+  --sans: "Raleway", system-ui, -apple-system, sans-serif;
+  --mono: "Space Mono", ui-monospace, monospace;
+
+  --container: 1440px;
+  --gutter: clamp(20px, 4vw, 56px);
+  --radius: 2px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--ivory);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+body{overflow-x:clip}
+img{display:block;max-width:100%;height:auto}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+a{color:inherit;text-decoration:none}
+
+::selection{background:var(--forest);color:var(--ivory)}
+
+/* ────────────────────────────────────────────────────────────────
+   GLOBAL TYPE
+   ──────────────────────────────────────────────────────────────── */
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:400;opacity:.75}
+.display-xl{font-family:var(--display);font-style:italic;font-weight:300;line-height:.92;letter-spacing:-.02em}
+.display-l{font-family:var(--display);font-style:italic;font-weight:300;line-height:.95;letter-spacing:-.015em}
+.display-m{font-family:var(--display);font-weight:400;line-height:1;letter-spacing:-.01em}
+.lede{font-family:var(--display);font-style:italic;font-weight:300;line-height:1.25;letter-spacing:-.005em}
+.body-lg{font-size:17px;line-height:1.55;color:#3a3631}
+.label{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase}
+
+/* ────────────────────────────────────────────────────────────────
+   IMAGE PLACEHOLDER (used when an img/... file isn't there yet)
+   Subtle warm stripes + monospace caption.
+   ──────────────────────────────────────────────────────────────── */
+.ph{position:relative;background:
+    repeating-linear-gradient(135deg,
+      rgba(31,42,34,.05) 0 1px,
+      transparent 1px 14px),
+    linear-gradient(180deg, #efe3cd 0%, #e1d2b4 100%);
+  color:#5d4a31;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+  text-align:center;padding:8px;
+  overflow:hidden;
+}
+.ph.dark{background:
+    repeating-linear-gradient(135deg,
+      rgba(244,237,224,.04) 0 1px,
+      transparent 1px 14px),
+    linear-gradient(180deg, #243027 0%, #182219 100%);
+  color:rgba(244,237,224,.65);
+}
+.ph::after{content:attr(data-label);display:block;max-width:80%}
+
+/* img that hides itself if broken so the ph behind it shows */
+.fallback{position:relative;background:transparent}
+.fallback > img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .3s ease}
+.fallback > img.broken{opacity:0}
+
+/* ────────────────────────────────────────────────────────────────
+   TOPBAR — marquee belt, infinite LTR scroll
+   ──────────────────────────────────────────────────────────────── */
+.topbar{
+  position:relative;background:#1f2a23;color:var(--ivory);
+  border-bottom:1px solid rgba(244,237,224,.06);
+  height:34px;display:flex;align-items:center;
+  overflow:hidden;
+}
+.topbar__track{
+  width:100%;overflow:hidden;
+  font-family:var(--mono);font-size:10px;letter-spacing:.26em;text-transform:uppercase;
+}
+.topbar__reel{
+  display:flex;width:max-content;align-items:center;
+  will-change:transform;
+}
+.topbar__item{display:inline-flex;align-items:center;gap:10px;color:rgba(244,237,224,.78);white-space:nowrap;padding:0 6px}
+.topbar__item a{color:inherit;text-decoration:none;transition:color .25s ease}
+.topbar__item a:hover{color:var(--copper-2)}
+.topbar__sep{display:inline-block;color:var(--copper);margin:0 18px;opacity:.7;font-size:9px}
+
+/* ────────────────────────────────────────────────────────────────
+   NAV — premium editorial, mucho aire
+   ──────────────────────────────────────────────────────────────── */
+.nav{
+  position:sticky;top:0;z-index:60;
+  background:var(--ivory);
+  border-bottom:1px solid rgba(58,46,38,.08);
+  transition:background .4s ease, box-shadow .4s ease, padding .3s ease;
+}
+.nav.scrolled{background:rgba(244,237,224,.94);backdrop-filter:saturate(140%) blur(16px);-webkit-backdrop-filter:saturate(140%) blur(16px);box-shadow:0 1px 0 rgba(58,46,38,.04)}
+.nav.scrolled .nav__inner{padding-top:18px;padding-bottom:18px}
+.nav__inner{max-width:var(--container);margin:0 auto;padding:30px var(--gutter);display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:32px;transition:padding .3s ease}
+.nav__brand{display:flex;flex-direction:column;align-items:flex-start;gap:8px;line-height:1;text-decoration:none}
+.nav__brand .nm{font-family:var(--display);font-style:italic;font-weight:400;font-size:34px;letter-spacing:-.012em;color:var(--ink);line-height:.95}
+.nav__brand .sub{font-family:var(--mono);font-size:9px;letter-spacing:.36em;text-transform:uppercase;color:var(--copper);font-weight:400;position:relative;padding-left:20px}
+.nav__brand .sub::before{content:"";position:absolute;left:0;top:50%;width:12px;height:1px;background:var(--copper);opacity:.7}
+.nav__links{display:flex;gap:42px;justify-content:center;font-family:var(--mono);font-size:11px;letter-spacing:.3em;text-transform:uppercase}
+.nav__links a{position:relative;padding:8px 0;color:var(--ink);text-decoration:none;font-weight:400}
+.nav__links a::after{content:"";position:absolute;left:0;right:100%;bottom:0;height:1px;background:var(--copper);transition:right .4s cubic-bezier(.16,1,.3,1)}
+.nav__links a:hover::after{right:0}
+.nav__actions{display:flex;gap:14px;justify-content:flex-end;align-items:center}
+.cart-btn{display:inline-flex;align-items:center;gap:10px;padding:11px 20px;border-radius:999px;border:1px solid rgba(26,24,21,.14);background:rgba(244,237,224,.6);color:var(--ink);font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;cursor:pointer;backdrop-filter:saturate(140%) blur(8px);-webkit-backdrop-filter:saturate(140%) blur(8px);transition:background .35s ease, border-color .35s ease, transform .35s cubic-bezier(.16,1,.3,1), box-shadow .35s ease;box-shadow:0 1px 0 rgba(255,255,255,.5) inset, 0 1px 2px rgba(60,40,20,.04)}
+.cart-btn:hover{background:var(--ivory);border-color:rgba(162,106,58,.45);transform:translateY(-1px);box-shadow:0 6px 18px -10px rgba(60,40,20,.25)}
+.cart-btn .count{display:inline-flex;align-items:center;justify-content:center;min-width:20px;height:20px;border-radius:999px;background:var(--copper);color:var(--ivory);font-weight:500;font-size:10px;padding:0 6px;transition:transform .35s cubic-bezier(.16,1,.3,1)}
+.cart-btn:hover .count{transform:scale(1.06)}
+@media (max-width:780px){
+  .topbar{height:32px}
+  .topbar__track{font-size:9px;letter-spacing:.2em}
+  .nav__inner{grid-template-columns:auto 1fr auto;padding:20px var(--gutter);gap:14px}
+  .nav__links{display:none}
+  .nav__brand .nm{font-size:26px}
+  .nav__brand .sub{font-size:8px;letter-spacing:.3em;padding-left:16px}
+  .nav__brand .sub::before{width:8px}
+  .cart-btn{padding:10px 14px;font-size:10px;letter-spacing:.2em;gap:8px}
+}
+
+/* ────────────────────────────────────────────────────────────────
+   HERO
+   ──────────────────────────────────────────────────────────────── */
+.hero{position:relative;height:calc(100vh - 34px - 96px);min-height:640px;overflow:hidden;background:#0e1410;color:var(--ivory)}
+.hero__img{position:absolute;inset:-6%;width:112%;height:112%;}
+.hero__img > .fallback{position:absolute;inset:0;}
+.hero__img img{width:100%;height:100%;object-fit:cover;animation:kenburns 22s ease-in-out infinite alternate}
+@keyframes kenburns{
+  0%{transform:scale(1.04) translate(0,0)}
+  100%{transform:scale(1.14) translate(-2%,-1%)}
+}
+.hero__overlay{position:absolute;inset:0;background:
+  radial-gradient(120% 80% at 60% 40%, rgba(0,0,0,0) 0%, rgba(0,0,0,.45) 60%, rgba(14,20,16,.75) 100%),
+  linear-gradient(180deg, rgba(14,20,16,.45) 0%, rgba(14,20,16,.15) 30%, rgba(14,20,16,.85) 100%)}
+.hero__content{position:relative;height:100%;max-width:var(--container);margin:0 auto;padding:0 var(--gutter);display:grid;grid-template-rows:1fr auto;padding-top:8vh;padding-bottom:7vh}
+.hero__top{align-self:start;display:flex;justify-content:space-between;align-items:flex-start;gap:24px}
+.hero__top .eyebrow{color:rgba(244,237,224,.78)}
+.hero__top-right{text-align:right}
+.hero__bottom{display:grid;grid-template-columns:1fr auto;align-items:end;gap:48px}
+.hero__lede{max-width:980px}
+.hero__title{font-family:var(--display);font-weight:300;font-size:clamp(48px, 8.4vw, 132px);line-height:.92;letter-spacing:-.025em;color:var(--ivory)}
+.hero__title em{font-style:italic;color:var(--copper-2)}
+.hero__subtitle{margin-top:28px;max-width:46ch;font-family:var(--display);font-style:italic;font-weight:300;font-size:clamp(17px,1.7vw,22px);line-height:1.4;color:rgba(244,237,224,.82)}
+.hero__title .ampersand{display:inline-block;color:var(--copper-2);font-style:italic;font-weight:300}
+.hero__meta{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(244,237,224,.7);max-width:260px;text-align:right}
+.hero__meta strong{color:var(--ivory);font-weight:500;display:block;margin-bottom:6px}
+.hero__cta-row{margin-top:36px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.btn-ghost,.btn-solid{display:inline-flex;align-items:center;gap:12px;padding:16px 24px;font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;transition:transform .25s ease, background .25s ease, color .25s ease, border-color .25s ease}
+.btn-ghost{border:1px solid rgba(244,237,224,.5);color:var(--ivory)}
+.btn-ghost:hover{transform:translateY(-2px);background:var(--ivory);color:var(--forest);border-color:var(--ivory)}
+.btn-solid{background:var(--copper);color:var(--ink);border:1px solid var(--copper)}
+.btn-solid:hover{transform:translateY(-2px);background:var(--copper-2);border-color:var(--copper-2)}
+.arrow{width:18px;height:1px;background:currentColor;position:relative}
+.arrow::after{content:"";position:absolute;right:-1px;top:-3px;width:7px;height:7px;border-right:1px solid currentColor;border-top:1px solid currentColor;transform:rotate(45deg)}
+.hero__scroll{position:absolute;left:var(--gutter);bottom:32px;writing-mode:vertical-rl;transform:rotate(180deg);font-family:var(--mono);font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:rgba(244,237,224,.55);display:flex;align-items:center;gap:14px}
+.hero__scroll::after{content:"";display:block;width:1px;height:60px;background:rgba(244,237,224,.4);animation:scrolltick 2.2s ease-in-out infinite}
+@keyframes scrolltick{0%{transform:scaleY(.2);transform-origin:top}50%{transform:scaleY(1)}100%{transform:scaleY(.2);transform-origin:bottom}}
+
+@media (max-width:780px){
+  .hero{height:auto;min-height:640px;padding-top:60px}
+  .hero__bottom{grid-template-columns:1fr;gap:32px}
+  .hero__meta{text-align:left}
+  .hero__top-right{display:none}
+  .hero__title{font-size:clamp(40px,11vw,72px)}
+  .hero__subtitle{margin-top:18px;font-size:16px}
+  .hero__cta-row{margin-top:24px}
+  .hero__scroll{display:none}
+}
+
+/* ────────────────────────────────────────────────────────────────
+   SECTION FRAME
+   ──────────────────────────────────────────────────────────────── */
+section{position:relative}
+.section-pad{padding:clamp(72px, 10vw, 140px) var(--gutter)}
+.container{max-width:var(--container);margin:0 auto}
+.section-head{display:grid;grid-template-columns:auto 1fr;align-items:end;gap:40px;margin-bottom:64px;padding-bottom:24px;border-bottom:1px solid var(--line)}
+.section-head .num{font-family:var(--mono);font-size:11px;letter-spacing:.22em;opacity:.55}
+.section-head h2{font-family:var(--display);font-style:italic;font-weight:300;font-size:clamp(40px, 6vw, 88px);line-height:.95;letter-spacing:-.02em;max-width:14ch}
+.section-head .right{justify-self:end;max-width:340px;text-align:right;font-size:14px;line-height:1.55;color:#4a443d}
+@media (max-width:780px){
+  .section-head{grid-template-columns:1fr;gap:18px}
+  .section-head .right{justify-self:start;text-align:left;max-width:none}
+}
+
+/* ────────────────────────────────────────────────────────────────
+   EDITORIAL STRIP
+   ──────────────────────────────────────────────────────────────── */
+.strip{background:var(--ivory-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:clamp(56px,7vw,96px) 0 0}
+.strip__intro{max-width:var(--container);margin:0 auto;padding:0 var(--gutter) clamp(40px,5vw,64px);display:flex;flex-direction:column;gap:18px}
+.strip__intro .eyebrow{opacity:.6}
+.strip__heading{font-family:var(--display);font-weight:300;font-size:clamp(34px,5vw,72px);line-height:1;letter-spacing:-.02em;color:var(--forest)}
+.strip__heading em{font-style:italic;color:var(--copper)}
+.strip__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(12px,1.4vw,20px);padding:0 var(--gutter) clamp(56px,7vw,96px);max-width:var(--container);margin:0 auto}
+.strip__panel{position:relative;aspect-ratio:4/5;overflow:hidden;cursor:pointer;border-radius:4px;isolation:isolate;background:#1a1310;will-change:transform}
+.strip__panel .fallback,.strip__panel .ph{position:absolute;inset:0;transition:transform 1.6s cubic-bezier(.16,1,.3,1)}
+.strip__panel .fallback img{width:100%;height:100%;object-fit:cover;transition:transform 1.6s cubic-bezier(.16,1,.3,1), filter .6s ease;filter:saturate(.96) contrast(1.02)}
+.strip__panel:hover .fallback img{transform:scale(1.08);filter:saturate(1.05) contrast(1.05)}
+.strip__panel .veil{position:absolute;inset:0;background:linear-gradient(180deg, rgba(20,28,22,.05) 0%, rgba(20,28,22,.18) 38%, rgba(20,28,22,.88) 100%);transition:opacity .6s ease;pointer-events:none}
+.strip__panel:hover .veil{background:linear-gradient(180deg, rgba(20,28,22,.1) 0%, rgba(20,28,22,.3) 35%, rgba(20,28,22,.94) 100%)}
+.strip__caption{position:absolute;left:clamp(20px,2.2vw,32px);right:clamp(20px,2.2vw,32px);bottom:clamp(22px,2.4vw,34px);color:var(--ivory);display:flex;flex-direction:column;gap:10px;transition:transform .7s cubic-bezier(.16,1,.3,1)}
+.strip__panel:hover .strip__caption{transform:translateY(-4px)}
+.strip__caption h3{font-family:var(--display);font-weight:300;font-size:clamp(28px,2.6vw,40px);line-height:.98;letter-spacing:-.01em;color:var(--ivory)}
+.strip__caption h3 em{font-style:italic;color:var(--copper-2)}
+.strip__caption .num{font-family:var(--mono);font-size:11px;letter-spacing:.22em;opacity:.82;text-transform:uppercase}
+.strip__caption .sub{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;opacity:.78;margin-top:4px}
+.strip__arrow{position:absolute;right:0;top:-4px;font-family:var(--display);font-size:22px;color:var(--copper-2);opacity:0;transform:translate(-6px,6px);transition:opacity .5s ease, transform .6s cubic-bezier(.16,1,.3,1)}
+.strip__panel:hover .strip__arrow{opacity:1;transform:translate(0,0)}
+@media (max-width:980px){
+  .strip__grid{grid-template-columns:repeat(2,1fr)}
+  .strip__panel:nth-child(3){grid-column:1 / -1;aspect-ratio:16/9}
+}
+@media (max-width:560px){
+  .strip__grid{grid-template-columns:1fr;gap:14px}
+  .strip__panel,.strip__panel:nth-child(3){aspect-ratio:4/5}
+  .strip__panel{aspect-ratio:5/4;border-right:0;border-bottom:1px solid var(--line)}
+}
+
+/* ────────────────────────────────────────────────────────────────
+   NOSOTROS
+   ──────────────────────────────────────────────────────────────── */
+.nosotros{background:var(--ivory)}
+.nosotros__grid{display:grid;grid-template-columns:1.15fr .85fr;gap:80px;align-items:start;margin-bottom:80px}
+.nosotros__hero{position:relative;aspect-ratio:4/5}
+.nosotros__hero .fallback,.nosotros__hero .ph{position:absolute;inset:0;overflow:hidden}
+.nosotros__hero .fallback > img{transition:transform 1.6s cubic-bezier(.16,1,.3,1)}
+.nosotros__hero:hover .fallback > img{transform:scale(1.03)}
+.nosotros__hero .tag{position:absolute;left:20px;top:20px;background:var(--ivory);color:var(--ink);padding:8px 12px;font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase}
+.nosotros__hero .corner{position:absolute;right:20px;bottom:20px;color:var(--ivory);font-family:var(--display);font-style:italic;font-weight:300;font-size:48px;line-height:.95;text-shadow:0 2px 24px rgba(0,0,0,.4);max-width:60%;text-align:right}
+.nosotros__copy{padding-top:48px}
+.nosotros__copy .eyebrow{margin-bottom:24px;display:flex;align-items:center;gap:14px}
+.nosotros__copy .eyebrow::before{content:"";width:36px;height:1px;background:var(--copper)}
+.nosotros__copy h2{font-family:var(--display);font-style:italic;font-weight:300;font-size:clamp(40px, 5.4vw, 80px);line-height:1;letter-spacing:-.02em;margin-bottom:36px}
+.nosotros__copy p{font-size:17px;line-height:1.65;color:#3a3631;margin-bottom:20px;max-width:46ch}
+.nosotros__copy .sign{font-family:var(--display);font-style:italic;font-weight:400;font-size:22px;margin-top:32px;color:var(--forest)}
+.nosotros__copy .sign::before{content:"";display:inline-block;width:28px;height:1px;background:var(--copper);vertical-align:middle;margin-right:14px}
+
+/* mini slideshows under the grid */
+.minis{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;padding-top:48px;border-top:1px solid var(--line)}
+.mini{display:grid;grid-template-columns:1fr;gap:14px}
+.mini__media{position:relative;aspect-ratio:5/4;overflow:hidden}
+.mini__media .slide{position:absolute;inset:0;opacity:0;transition:opacity 1s ease}
+.mini__media .slide.active{opacity:1}
+.mini__media .slide .fallback,.mini__media .slide .ph{position:absolute;inset:0}
+.mini__media .ticker{position:absolute;left:14px;bottom:14px;display:flex;gap:6px;z-index:2}
+.mini__media .ticker span{width:14px;height:1px;background:rgba(244,237,224,.5);transition:background .3s ease, height .3s ease}
+.mini__media .ticker span.active{background:var(--copper);height:2px}
+.mini__head{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.mini__head h4{font-family:var(--display);font-style:italic;font-weight:400;font-size:24px;line-height:1.1;letter-spacing:-.005em}
+.mini__head .n{font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--copper)}
+.mini__sub{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#7a7068}
+
+.facts{margin-top:56px;display:grid;grid-template-columns:repeat(3,1fr);gap:24px;padding-top:32px;border-top:1px solid var(--line)}
+.facts .f .k{font-family:var(--display);font-style:italic;font-weight:300;font-size:46px;line-height:1;color:var(--forest)}
+.facts .f .l{font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;margin-top:8px;opacity:.7}
+@media (max-width:920px){
+  .nosotros__grid{grid-template-columns:1fr;gap:60px;margin-bottom:60px}
+  .nosotros__copy{padding-top:0}
+  .minis{grid-template-columns:1fr;gap:40px}
+  .facts{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .facts .f .k{font-size:32px}
+}
+
+/* ────────────────────────────────────────────────────────────────
+   MENÚ
+   ──────────────────────────────────────────────────────────────── */
+.menu{background:var(--ivory)}
+.menu__tabs{
+  position:sticky;top:86px;z-index:30;
+  display:flex;flex-wrap:nowrap;gap:8px;
+  margin:0 calc(var(--gutter) * -1) 48px;
+  padding:14px var(--gutter);
+  background:rgba(244,237,224,.82);
+  backdrop-filter:saturate(150%) blur(14px);
+  -webkit-backdrop-filter:saturate(150%) blur(14px);
+  border-bottom:1px solid rgba(58,46,38,.05);
+  overflow-x:auto;
+  scrollbar-width:none;
+  -ms-overflow-style:none;
+  scroll-behavior:smooth;
+  -webkit-overflow-scrolling:touch;
+}
+.menu__tabs::-webkit-scrollbar{display:none;width:0;height:0}
+.tab{flex-shrink:0;padding:11px 20px;border-radius:999px;border:1px solid transparent;background:transparent;color:#5d544a;font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;transition:all .45s cubic-bezier(.16,1,.3,1);display:inline-flex;align-items:center;gap:10px;cursor:pointer;white-space:nowrap;position:relative}
+.tab .ct{font-size:9.5px;opacity:.55;font-weight:500}
+.tab:hover{color:var(--ink);background:rgba(222,210,187,.45)}
+.tab.active{background:var(--ivory);color:var(--ink);border-color:rgba(162,106,58,.35);box-shadow:0 1px 0 rgba(255,255,255,.55) inset, 0 6px 16px -10px rgba(60,40,20,.22)}
+.tab.active .ct{opacity:1;color:var(--copper)}
+
+.menu__grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:56px 36px;scroll-margin-top:160px;transition:opacity .25s ease}
+.menu__grid.swapping{opacity:0}
+.card{position:relative;display:flex;flex-direction:column;cursor:pointer;transition:transform .55s cubic-bezier(.16,1,.3,1);min-width:0}
+.card:hover{transform:translateY(-4px)}
+.card__img{position:relative;aspect-ratio:5/4;overflow:hidden;background:var(--ivory-2);border-radius:14px;box-shadow:0 1px 0 rgba(255,255,255,.6) inset, 0 14px 30px -22px rgba(60,40,20,.28);transition:box-shadow .5s ease}
+.card:hover .card__img{box-shadow:0 1px 0 rgba(255,255,255,.7) inset, 0 24px 44px -22px rgba(60,40,20,.35)}
+.menu__grid[data-cat="bebidas"] .card__img{aspect-ratio:3/4}
+.menu__grid[data-cat="bebidas"] .card__img .fallback>img{object-fit:cover}
+.card__img .fallback,.card__img .ph{position:absolute;inset:0;transition:transform 1.4s cubic-bezier(.16,1,.3,1)}
+.card__img .fallback img{transition:transform 1.4s cubic-bezier(.16,1,.3,1), filter .5s ease;filter:saturate(.97)}
+.card:hover .card__img .fallback img{transform:scale(1.06);filter:saturate(1.04)}
+.card__qty{align-self:start;display:inline-flex;align-items:center;gap:0;height:34px;border-radius:999px;border:1px solid rgba(26,24,21,.1);background:rgba(244,237,224,.6);transition:all .35s cubic-bezier(.16,1,.3,1);flex-shrink:0;margin-top:2px;overflow:hidden;font-family:var(--mono)}
+.card__qty .qty{display:none;min-width:18px;text-align:center;font-size:12.5px;font-weight:500;line-height:1;letter-spacing:.04em;padding:0 2px}
+.card__qty-btn{display:flex;align-items:center;justify-content:center;width:34px;height:32px;font-size:18px;font-weight:300;line-height:1;color:inherit;background:transparent;border:0;cursor:pointer;transition:background .25s ease, transform .35s cubic-bezier(.16,1,.3,1)}
+.card__qty-btn.minus{display:none;width:30px;padding:0 4px 0 8px}
+.card__qty-btn.plus{padding:0 8px 0 4px}
+.card__qty-btn:hover{background:rgba(162,106,58,.15)}
+.card__qty:not(.has-qty) .card__qty-btn.plus{width:34px;padding:0}
+.card__qty:hover{border-color:rgba(162,106,58,.45);transform:translateY(-1px);box-shadow:0 6px 14px -8px rgba(60,40,20,.25)}
+.card__qty.has-qty{background:var(--copper);color:var(--ivory);border-color:var(--copper);box-shadow:0 6px 14px -8px rgba(162,106,58,.55)}
+.card__qty.has-qty .qty{display:inline-block}
+.card__qty.has-qty .card__qty-btn.minus{display:flex}
+.card__qty.has-qty .card__qty-btn:hover{background:rgba(255,255,255,.15)}
+.card__qty.has-qty:hover{border-color:var(--copper);box-shadow:0 8px 16px -8px rgba(162,106,58,.6)}
+.card__qty.bump{animation:qtyBump .35s cubic-bezier(.16,1,.3,1)}
+@keyframes qtyBump{0%{transform:scale(1)}40%{transform:scale(1.08)}100%{transform:scale(1)}}
+.card__body{padding:18px 4px 0;display:grid;grid-template-columns:1fr auto;gap:14px;align-items:start}
+.card__body h4{font-family:var(--display);font-style:italic;font-weight:400;font-size:22px;line-height:1.18;letter-spacing:-.005em;color:#2a2520}
+.card__body .desc{font-size:13px;color:#6d655c;margin-top:6px;line-height:1.5;max-width:30ch}
+.card__price{font-family:var(--mono);font-size:12.5px;letter-spacing:.04em;color:var(--copper);font-weight:500;white-space:nowrap;margin-top:6px}
+@media(max-width:780px){
+  .card__body{padding:14px 2px 0;gap:10px}
+  .card__body h4{font-size:clamp(16px,4.5vw,21px)}
+  .card__price{font-size:11px;letter-spacing:.03em;margin-top:4px}
+  .card__img{border-radius:12px}
+  .card__qty{height:30px}
+  .card__qty-btn{width:30px;height:28px;font-size:16px}
+  .card__qty:not(.has-qty) .card__qty-btn.plus{width:30px}
+}
+.card__tag,.card__badge{position:absolute;left:14px;top:14px;padding:7px 12px;font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;z-index:2;border-radius:999px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);box-shadow:0 4px 12px -6px rgba(60,40,20,.18)}
+.card__tag{background:rgba(244,237,224,.9);color:var(--ink);border:1px solid rgba(26,24,21,.06)}
+.card__badge{background:rgba(162,106,58,.94);color:var(--ivory);font-weight:500}
+
+@media (max-width:980px){.menu__grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:44px 24px}}
+@media (max-width:780px){.menu__tabs{top:64px;padding:12px var(--gutter);margin-bottom:36px}.menu__grid{scroll-margin-top:140px}.tab{padding:10px 16px;font-size:10.5px}}
+@media (max-width:560px){.menu__grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:32px 16px}.card__tag,.card__badge{left:10px;top:10px;padding:6px 10px;font-size:8.5px}}
+
+/* ────────────────────────────────────────────────────────────────
+   FULLBLEED DIVIDER
+   ──────────────────────────────────────────────────────────────── */
+.divider{position:relative;height:80vh;min-height:520px;overflow:hidden;background:#1a1310 url('img/nosotros/medialuna-pro.jpeg') center/cover no-repeat fixed;color:var(--ivory)}
+.divider .bg{display:none}
+.divider .bg .fallback,.divider .bg .ph{position:absolute;inset:0}
+.divider .bg .fallback > img{width:100%;height:100%;object-fit:cover}
+.divider .veil{position:absolute;inset:0;background:linear-gradient(180deg, rgba(20,16,12,.55) 0%, rgba(20,16,12,.25) 40%, rgba(20,16,12,.85) 100%)}
+.divider__copy{position:relative;height:100%;max-width:var(--container);margin:0 auto;padding:0 var(--gutter);display:flex;align-items:center}
+.divider__copy .inner{max-width:680px}
+.divider__copy .eyebrow{color:var(--copper-2);margin-bottom:24px}
+.divider__copy h3{font-family:var(--display);font-style:italic;font-weight:300;font-size:clamp(44px, 7vw, 108px);line-height:.95;letter-spacing:-.02em;margin-bottom:24px}
+.divider__copy p{max-width:42ch;font-size:16px;line-height:1.6;color:rgba(244,237,224,.8)}
+
+/* ────────────────────────────────────────────────────────────────
+   VELOCITY GALLERY — 3D horizontal carousel
+   ──────────────────────────────────────────────────────────────── */
+.vg-section{
+  background:var(--forest);color:var(--ivory);
+  padding:clamp(72px,9vw,140px) 0 0;
+  overflow:hidden;
+  position:relative;
+}
+.vg-head{
+  max-width:var(--container);margin:0 auto;
+  padding:0 var(--gutter);
+  display:flex;align-items:flex-end;justify-content:space-between;gap:32px;
+  margin-bottom:clamp(48px,6vw,84px);
+}
+.vg-title{
+  font-family:var(--display);font-style:italic;font-weight:300;
+  font-size:clamp(48px,8vw,128px);line-height:.92;letter-spacing:-.02em;
+  margin:0;color:var(--ivory);
+}
+.vg-title em{font-style:italic;color:var(--copper-2)}
+.vg-hint{
+  font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;
+  color:rgba(244,237,224,.55);padding-bottom:14px;white-space:nowrap;
+}
+.vg-wrap{
+  perspective:1200px;perspective-origin:50% 55%;
+  position:relative;width:100%;
+  padding:64px 0 84px;
+  -webkit-mask-image:linear-gradient(to right,transparent 0%,#000 7%,#000 93%,transparent 100%);
+          mask-image:linear-gradient(to right,transparent 0%,#000 7%,#000 93%,transparent 100%);
+}
+.vg-track{
+  display:flex;gap:18px;width:max-content;
+  cursor:grab;
+  transform-style:preserve-3d;
+  will-change:transform;
+  user-select:none;
+  touch-action:pan-y;
+}
+.vg-track.dragging{cursor:grabbing}
+.vg-card{
+  flex:0 0 auto;
+  width:260px;height:360px;
+  position:relative;overflow:hidden;
+  border-radius:18px;
+  transform-style:preserve-3d;
+  transform-origin:center center;
+  background:#1a1815;
+  will-change:transform;
+  box-shadow:0 12px 24px -16px rgba(0,0,0,.5);
+  transition:box-shadow .45s ease;
+}
+.vg-card img{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;object-position:80% 50%;
+  display:block;
+  pointer-events:none;
+  transform:scale(1.04);transition:transform .9s cubic-bezier(.16,1,.3,1),filter .45s ease;
+  filter:saturate(1.06) brightness(.98);
+}
+/* Imágenes con el sujeto ya centrado en el frame original */
+.vg-card[data-pos="c"] img{object-position:50% 50%}
+/* Imágenes con el sujeto muy a la derecha del frame — anchor extremo */
+.vg-card[data-pos="l"] img{object-position:100% 50%}
+.vg-card[data-hovered="1"] img{transform:scale(1.10);filter:saturate(1.1) brightness(1.02)}
+.vg-card::before{
+  content:"";position:absolute;inset:0;z-index:1;
+  background:linear-gradient(to top,rgba(15,14,12,.88) 0%,rgba(15,14,12,.32) 45%,transparent 72%);
+  opacity:0;transition:opacity .45s ease;
+  pointer-events:none;
+}
+.vg-card[data-hovered="1"]::before{opacity:1}
+.vg-card[data-hovered="1"]{box-shadow:0 30px 60px -20px rgba(0,0,0,.6)}
+.vg-label{
+  position:absolute;left:18px;right:18px;bottom:18px;z-index:2;
+  display:flex;flex-direction:column;gap:6px;
+  opacity:0;transform:translateY(8px);
+  transition:opacity .4s ease,transform .4s ease;
+  pointer-events:none;
+}
+.vg-card[data-hovered="1"] .vg-label{opacity:1;transform:translateY(0)}
+.vg-label-cat{
+  font-family:var(--mono);font-size:9px;letter-spacing:.28em;text-transform:uppercase;
+  color:var(--copper-2);
+}
+.vg-label-name{
+  font-family:var(--display);font-style:italic;font-weight:400;
+  font-size:22px;line-height:1.1;letter-spacing:-.01em;
+  color:var(--ivory);
+}
+.vg-vel{
+  position:relative;height:2px;width:100%;
+  background:rgba(244,237,224,.06);
+}
+.vg-vel span{
+  display:block;height:100%;background:var(--copper-2);
+  transform-origin:left center;transform:scaleX(0);
+  transition:transform .14s ease-out;
+}
+@media(max-width:780px){
+  .vg-head{flex-direction:column;align-items:flex-start;gap:8px}
+  .vg-hint{display:none}
+  .vg-wrap{padding:40px 0 56px}
+  .vg-card{width:200px;height:280px}
+  .vg-label{left:12px;right:12px;bottom:12px}
+  .vg-label-name{font-size:18px}
+}
+
+/* ────────────────────────────────────────────────────────────────
+   VISITA
+   ──────────────────────────────────────────────────────────────── */
+.visita{background:var(--forest);color:var(--ivory)}
+.visita .section-head{border-color:rgba(244,237,224,.1);grid-template-columns:1fr;gap:24px}
+.visita .section-head .num{color:rgba(244,237,224,.5)}
+.visita .section-head .right{justify-self:start;text-align:left;max-width:520px;color:rgba(244,237,224,.7);margin-top:8px}
+.visita__grid{display:grid;grid-template-columns:1fr 1.1fr;gap:80px;align-items:start}
+.info{display:grid;gap:32px}
+.info .row{display:grid;grid-template-columns:140px 1fr;gap:24px;padding:24px 0;border-top:1px solid rgba(244,237,224,.1)}
+.info .row:last-child{border-bottom:1px solid rgba(244,237,224,.1)}
+.info .row .k{font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(244,237,224,.55);padding-top:6px}
+.info .row .v{font-family:var(--display);font-style:italic;font-weight:300;font-size:28px;line-height:1.15;letter-spacing:-.01em}
+.info .row .v .s{display:block;font-family:var(--sans);font-style:normal;font-size:13px;line-height:1.55;color:rgba(244,237,224,.65);margin-top:8px;letter-spacing:0}
+.info .row a{transition:color .25s ease}
+.info .row a:hover{color:var(--copper-2)}
+.map{position:relative;aspect-ratio:4/5;overflow:hidden;background:var(--forest-deep);border:1px solid rgba(244,237,224,.1)}
+.map iframe{position:absolute;inset:0;width:100%;height:100%;border:0;filter:saturate(1.05) contrast(1.02)}
+.map__badge{position:absolute;left:18px;top:18px;background:rgba(20,30,24,.92);backdrop-filter:saturate(140%) blur(6px);-webkit-backdrop-filter:saturate(140%) blur(6px);padding:14px 18px;display:flex;flex-direction:column;gap:4px;border:1px solid rgba(244,237,224,.12);max-width:78%;pointer-events:none;z-index:2}
+.map__badge-eyebrow{font-family:var(--mono);font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:var(--copper-2)}
+.map__badge-name{font-family:var(--display);font-style:italic;font-size:22px;line-height:1;color:var(--ivory);margin-top:2px}
+.map__badge-addr{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(244,237,224,.72);margin-top:6px}
+.map__open{position:absolute;right:14px;bottom:14px;background:var(--copper);color:var(--ink);padding:10px 14px;font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;text-decoration:none;z-index:2;transition:background .25s ease, color .25s ease}
+.map__open:hover{background:var(--ink);color:var(--ivory)}
+
+.visita__cta{margin-top:48px;display:flex;flex-wrap:wrap;gap:14px}
+.btn-line{display:inline-flex;align-items:center;gap:12px;padding:16px 22px;border:1px solid rgba(244,237,224,.4);font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ivory);transition:all .25s ease}
+.btn-line:hover{transform:translateY(-2px);border-color:var(--copper-2);color:var(--copper-2)}
+
+@media (max-width:920px){
+  .visita__grid{grid-template-columns:1fr;gap:48px}
+  .info .row{grid-template-columns:100px 1fr;gap:16px}
+}
+
+/* ────────────────────────────────────────────────────────────────
+   SOCIAL RAIL — fixed right edge
+   ──────────────────────────────────────────────────────────────── */
+.social-rail{
+  position:fixed;right:14px;top:50%;transform:translateY(-50%);
+  z-index:80;
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  background:transparent;border:0;
+  opacity:.55;
+  transition:opacity .45s cubic-bezier(.16,1,.3,1);
+}
+.social-rail:hover{opacity:1}
+.social-rail__link{
+  display:flex;align-items:center;justify-content:center;
+  width:38px;height:38px;border-radius:999px;
+  background:rgba(244,237,224,.55);
+  color:#3a3631;
+  backdrop-filter:blur(8px) saturate(140%);
+  -webkit-backdrop-filter:blur(8px) saturate(140%);
+  border:1px solid rgba(26,24,21,.06);
+  box-shadow:0 4px 14px -8px rgba(60,40,20,.25);
+  transition:background .35s ease, color .35s ease, transform .35s cubic-bezier(.16,1,.3,1), border-color .35s ease;
+  position:relative;
+}
+.social-rail__link:hover{
+  background:var(--copper);
+  color:var(--ivory);
+  border-color:var(--copper);
+  transform:translateX(-2px) scale(1.04);
+}
+.social-rail__link svg{
+  width:16px;height:16px;
+  fill:currentColor;
+  display:block;
+  flex-shrink:0;
+}
+@media (max-width:780px){
+  .social-rail{right:10px;gap:6px;opacity:.5}
+  .social-rail__link{width:34px;height:34px}
+  .social-rail__link svg{width:14px;height:14px}
+}
+
+/* ────────────────────────────────────────────────────────────────
+   FOOTER
+   ──────────────────────────────────────────────────────────────── */
+.footer{background:var(--forest-deep);color:var(--ivory);padding:80px var(--gutter) 36px}
+.footer__inner{max-width:var(--container);margin:0 auto;display:grid;gap:64px}
+.footer__top{display:grid;grid-template-columns:1fr auto 1fr;gap:48px;align-items:center;padding-bottom:48px;border-bottom:1px solid rgba(244,237,224,.08)}
+.footer__brand{font-family:var(--display);font-style:italic;font-weight:300;font-size:clamp(48px, 8vw, 120px);line-height:.9;letter-spacing:-.02em;text-align:center;grid-column:1/-1}
+.footer__brand .sub{display:block;font-family:var(--mono);font-style:normal;font-size:11px;letter-spacing:.4em;text-transform:uppercase;color:var(--copper-2);margin-top:18px;font-weight:400}
+.footer__cols{display:grid;grid-template-columns:repeat(4,1fr);gap:32px}
+.footer__col h5{font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(244,237,224,.5);margin-bottom:16px}
+.footer__col a,.footer__col p{display:block;font-size:14px;color:rgba(244,237,224,.85);line-height:1.7}
+.footer__col a:hover{color:var(--copper-2)}
+.footer__bottom{display:flex;justify-content:space-between;align-items:center;gap:24px;font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(244,237,224,.45)}
+@media (max-width:780px){
+  .footer__cols{grid-template-columns:repeat(2,1fr);gap:32px}
+  .footer__bottom{flex-direction:column;text-align:center}
+}
+
+/* ────────────────────────────────────────────────────────────────
+   CART DRAWER + MODAL
+   ──────────────────────────────────────────────────────────────── */
+.drawer-scrim{position:fixed;inset:0;background:rgba(20,16,12,.5);backdrop-filter:blur(4px);opacity:0;pointer-events:none;transition:opacity .4s ease;z-index:90}
+.drawer-scrim.open{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(460px,100%);background:var(--ivory);transform:translateX(100%);transition:transform .55s cubic-bezier(.16,1,.3,1);z-index:100;display:flex;flex-direction:column;border-radius:18px 0 0 18px;box-shadow:-30px 0 60px -30px rgba(60,40,20,.25)}
+.drawer.open{transform:translateX(0)}
+.drawer__head{padding:26px 30px;border-bottom:1px solid rgba(26,24,21,.07);display:flex;justify-content:space-between;align-items:center}
+.drawer__head h3{font-family:var(--display);font-style:italic;font-weight:400;font-size:28px}
+.drawer__close{width:38px;height:38px;border-radius:999px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(26,24,21,.1);font-size:20px;line-height:1;background:rgba(244,237,224,.6);transition:all .3s cubic-bezier(.16,1,.3,1)}
+.drawer__close:hover{background:var(--ivory-2);border-color:rgba(162,106,58,.45);color:var(--copper);transform:rotate(90deg)}
+.drawer__items{flex:1;overflow-y:auto;padding:8px 28px}
+.drawer__empty{padding:48px 0;text-align:center;color:#6d655c}
+.drawer__empty .eyebrow{margin-bottom:12px}
+.line-item{display:grid;grid-template-columns:64px 1fr auto;gap:14px;padding:20px 0;border-bottom:1px solid var(--line);align-items:center}
+.line-item .ph,.line-item .fallback{width:64px;height:64px;font-size:8px}
+.line-item .name{font-family:var(--display);font-style:italic;font-weight:400;font-size:18px;line-height:1.2}
+.line-item .opt{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#7a7068;margin-top:4px}
+.line-item .qty{display:flex;align-items:center;gap:8px;margin-top:8px}
+.line-item .qty button{width:24px;height:24px;border-radius:999px;border:1px solid rgba(26,24,21,.1);display:flex;align-items:center;justify-content:center;font-size:14px;line-height:1;background:rgba(244,237,224,.5);transition:all .25s ease}
+.line-item .qty button:hover{background:var(--copper);color:var(--ivory);border-color:var(--copper)}
+.line-item .qty .n{font-family:var(--mono);font-size:12px;min-width:14px;text-align:center}
+.line-item .price{font-family:var(--mono);font-size:13px;color:var(--copper);font-weight:500}
+.line-item .rm{display:block;margin-top:8px;font-family:var(--mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:#9a9088}
+.line-item .rm:hover{color:var(--ink)}
+
+.upsell{padding:24px 28px;background:var(--ivory-2);border-top:1px solid var(--line)}
+.upsell .eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.upsell .eyebrow::before{content:"";width:24px;height:1px;background:var(--copper)}
+.upsell__row{display:flex;gap:10px;overflow-x:auto;padding-bottom:4px}
+.upsell__row::-webkit-scrollbar{display:none}
+.upsell__chip{flex:0 0 auto;display:inline-flex;align-items:center;gap:10px;padding:10px 16px;border-radius:999px;border:1px solid rgba(26,24,21,.08);background:var(--ivory);font-size:12px;transition:all .3s cubic-bezier(.16,1,.3,1)}
+.upsell__chip:hover{border-color:rgba(162,106,58,.45);transform:translateY(-2px);box-shadow:0 8px 18px -12px rgba(60,40,20,.25)}
+.upsell__chip .p{font-family:var(--mono);font-size:11px;color:var(--copper)}
+
+.drawer__foot{padding:24px 28px;border-top:1px solid var(--line);background:var(--ivory)}
+.drawer__foot .row{display:flex;justify-content:space-between;margin-bottom:8px;font-size:13px;color:#5d5650}
+.drawer__foot .row.total{font-family:var(--display);font-style:italic;font-weight:400;font-size:28px;color:var(--ink);margin-top:14px;border-top:1px solid var(--line);padding-top:14px}
+.drawer__foot .row.total .v{font-family:var(--display)}
+.wa-btn{display:flex;align-items:center;justify-content:center;gap:12px;width:100%;margin-top:18px;padding:18px;border-radius:14px;background:var(--forest);color:var(--ivory);font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;transition:all .35s cubic-bezier(.16,1,.3,1);box-shadow:0 10px 24px -14px rgba(31,42,34,.55)}
+.wa-btn:hover{background:var(--copper);transform:translateY(-2px);box-shadow:0 16px 30px -16px rgba(162,106,58,.65)}
+.wa-btn svg{width:14px;height:14px}
+.wa-btn:disabled{opacity:.4;pointer-events:none}
+
+/* OPTIONS MODAL */
+.modal-scrim{position:fixed;inset:0;background:rgba(30,22,16,.42);backdrop-filter:blur(10px) saturate(140%);-webkit-backdrop-filter:blur(10px) saturate(140%);opacity:0;pointer-events:none;transition:opacity .4s ease;z-index:110;display:flex;align-items:center;justify-content:center;padding:24px}
+.modal-scrim.open{opacity:1;pointer-events:auto}
+.modal{background:var(--ivory);max-width:540px;width:100%;transform:translateY(24px) scale(.98);opacity:0;transition:all .55s cubic-bezier(.16,1,.3,1);max-height:90vh;display:flex;flex-direction:column;border-radius:22px;overflow:hidden;box-shadow:0 30px 60px -20px rgba(40,28,18,.35), 0 1px 0 rgba(255,255,255,.6) inset}
+.modal-scrim.open .modal{transform:translateY(0) scale(1);opacity:1}
+.modal__head{padding:30px 32px 22px;display:flex;justify-content:space-between;align-items:start;gap:20px;background:linear-gradient(180deg, rgba(235,225,207,.5) 0%, rgba(244,237,224,0) 100%)}
+.modal__head h3{font-family:var(--display);font-style:italic;font-weight:400;font-size:30px;line-height:1.05;letter-spacing:-.01em;color:#2a2520}
+.modal__head .desc{font-size:13px;color:#6d655c;margin-top:8px;line-height:1.5;max-width:38ch}
+.modal__body{padding:8px 32px 28px;overflow-y:auto;flex:1}
+.opt-group{margin-bottom:26px}
+.opt-group__title{font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#8a807a;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center}
+.opt-group__title .req{color:var(--copper);font-weight:500}
+.opt-list{display:flex;flex-wrap:wrap;gap:8px}
+.opt-pill{padding:10px 16px;border-radius:999px;border:1px solid rgba(26,24,21,.1);background:rgba(244,237,224,.5);color:#3a3631;font-size:13px;cursor:pointer;transition:all .3s cubic-bezier(.16,1,.3,1);font-family:var(--sans);line-height:1}
+.opt-pill:hover{border-color:rgba(162,106,58,.45);background:var(--ivory);transform:translateY(-1px)}
+.opt-pill.selected{background:var(--copper);color:var(--ivory);border-color:var(--copper);box-shadow:0 6px 16px -8px rgba(162,106,58,.55)}
+.modal__foot{padding:22px 32px 26px;border-top:1px solid rgba(26,24,21,.07);display:flex;justify-content:space-between;align-items:center;gap:16px;background:rgba(244,237,224,.4)}
+.modal__foot .price{font-family:var(--display);font-style:italic;font-size:26px;color:#2a2520}
+.modal__foot .add-btn{padding:15px 24px;border-radius:999px;background:var(--copper);color:var(--ivory);font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;transition:all .35s cubic-bezier(.16,1,.3,1);display:inline-flex;align-items:center;gap:12px;box-shadow:0 10px 22px -12px rgba(162,106,58,.6)}
+.modal__foot .add-btn:hover{background:var(--forest);transform:translateY(-2px);box-shadow:0 16px 28px -14px rgba(31,42,34,.55)}
+@media(max-width:560px){
+  .modal-scrim{padding:14px;align-items:flex-end}
+  .modal{max-height:92vh;border-radius:22px 22px 0 0}
+  .modal__head{padding:24px 22px 16px}
+  .modal__body{padding:6px 22px 22px}
+  .modal__foot{padding:18px 22px 20px}
+  .modal__head h3{font-size:26px}
+}
+
+/* CART FAB — floating cart CTA cuando hay productos (animations rAF-driven) */
+.cart-fab{
+  position:fixed;right:24px;bottom:24px;z-index:90;
+  display:none;align-items:center;gap:14px;
+  padding:14px 22px 14px 16px;
+  background:var(--copper);color:var(--ivory);
+  border:none;border-radius:999px;cursor:pointer;
+  font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;
+  box-shadow:0 22px 46px -16px rgba(20,12,4,.55), 0 8px 18px -8px rgba(0,0,0,.25);
+  opacity:0;
+}
+.cart-fab.show{display:flex}
+.cart-fab:hover{background:var(--ink);box-shadow:0 28px 54px -14px rgba(20,12,4,.65)}
+.cart-fab__icon{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:999px;background:rgba(244,237,224,.16);flex-shrink:0}
+.cart-fab__icon svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.6}
+.cart-fab__thumbs{display:flex;align-items:center;margin-left:-4px}
+.cart-fab__thumbs .thumb{width:28px;height:28px;border-radius:999px;border:2px solid var(--copper);background:#1a1815 center/cover no-repeat;margin-left:-10px;box-shadow:0 4px 8px -3px rgba(0,0,0,.3);transition:transform .3s ease}
+.cart-fab:hover .cart-fab__thumbs .thumb{transform:scale(1.08)}
+.cart-fab__txt{display:flex;flex-direction:column;align-items:flex-start;gap:2px;line-height:1}
+.cart-fab__cta{font-weight:500}
+.cart-fab__total{font-family:var(--display);font-style:italic;font-size:14px;letter-spacing:.01em;text-transform:none;opacity:.92}
+.cart-fab__count{display:inline-flex;align-items:center;justify-content:center;min-width:22px;height:22px;padding:0 7px;border-radius:999px;background:var(--ivory);color:var(--ink);font-weight:600;font-size:10px;letter-spacing:.05em}
+@media(max-width:780px){
+  .cart-fab{right:16px;bottom:16px;padding:12px 18px 12px 12px;gap:10px}
+  .cart-fab__txt{display:none}
+  .cart-fab__thumbs .thumb{width:24px;height:24px}
+}
+
+/* TOAST */
+.toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%, 16px) scale(.96);opacity:0;pointer-events:none;background:rgba(244,237,224,.92);color:#2a2520;padding:13px 22px 13px 18px;border-radius:999px;border:1px solid rgba(26,24,21,.06);box-shadow:0 18px 40px -18px rgba(40,28,18,.4), 0 1px 0 rgba(255,255,255,.6) inset;font-family:var(--sans);font-size:13px;letter-spacing:.005em;backdrop-filter:blur(14px) saturate(150%);-webkit-backdrop-filter:blur(14px) saturate(150%);transition:all .5s cubic-bezier(.16,1,.3,1);z-index:120;display:inline-flex;align-items:center;gap:11px;max-width:min(420px,calc(100vw - 32px))}
+.toast.show{transform:translate(-50%, 0) scale(1);opacity:1}
+.toast .dot{width:22px;height:22px;border-radius:999px;background:var(--copper);color:var(--ivory);display:inline-flex;align-items:center;justify-content:center;font-size:13px;line-height:1;flex-shrink:0;box-shadow:0 4px 10px -4px rgba(162,106,58,.55)}
+.toast .dot::before{content:"✓";font-family:var(--sans);font-weight:500}
+.toast em{font-family:var(--display);font-style:italic;font-weight:400;color:var(--copper);font-size:14px;margin:0 2px}
+
+/* ────────────────────────────────────────────────────────────────
+   REVEAL ON SCROLL · animations driven by JS rAF (CSS transitions
+   are pinned to frame 0 in this browser by OS reduce-motion)
+   ──────────────────────────────────────────────────────────────── */
+.reveal{opacity:0;transform:translateY(28px);will-change:opacity,transform}
+.reveal-stagger > *{opacity:0;transform:translateY(28px);will-change:opacity,transform}
+.reveal.in,.reveal-stagger.in > *{opacity:1;transform:translateY(0)} /* fallback for users without rAF */
+
+@media (max-width:780px){
+  .divider{background-image:none}
+  .divider .bg{display:block;position:absolute;top:0;left:0;right:0;height:100vh;will-change:transform;z-index:0}
+  .divider .bg .fallback,.divider .bg .ph{position:absolute;inset:0}
+  .divider .bg .fallback > img{width:100%;height:100%;object-fit:cover}
+  .divider .veil{z-index:1}
+  .divider__copy{z-index:2}
+}
+@media (prefers-reduced-motion: reduce){
+  /* Heavy vestibular motion: respect user preference */
+  [data-parallax],[data-float]{transform:none !important}
+}
+
+/* ────────────────────────────────────────────────────────────────
+   LENIS · smooth inertia scroll
+   ──────────────────────────────────────────────────────────────── */
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto !important}
+.lenis.lenis-smooth [data-lenis-prevent]{overscroll-behavior:contain}
+.lenis.lenis-stopped{overflow:clip}
+
+/* ────────────────────────────────────────────────────────────────
+   CINEMATIC REVEALS · fade + blur
+   ──────────────────────────────────────────────────────────────── */
+.reveal-blur{
+  opacity:0;filter:blur(14px);transform:translateY(36px) scale(.985);
+  will-change:opacity,filter,transform;
+}
+.reveal-blur-stagger > *{
+  opacity:0;filter:blur(12px);transform:translateY(28px);
+  will-change:opacity,filter,transform;
+}
+.reveal-blur.in,.reveal-blur-stagger.in > *{opacity:1;filter:blur(0);transform:translateY(0) scale(1)} /* fallback */
+
+/* ────────────────────────────────────────────────────────────────
+   FLOATING · gentle organic motion
+   ──────────────────────────────────────────────────────────────── */
+@keyframes float-soft{
+  0%,100%{transform:translate3d(0,0,0)}
+  50%{transform:translate3d(0,-8px,0)}
+}
+@keyframes float-soft-x{
+  0%,100%{transform:translate3d(0,0,0)}
+  50%{transform:translate3d(4px,-6px,0)}
+}
+.float-y{animation:float-soft 7s ease-in-out infinite;will-change:transform}
+.float-y.delay-1{animation-delay:-1.6s;animation-duration:8s}
+.float-y.delay-2{animation-delay:-3.2s;animation-duration:9s;animation-name:float-soft-x}
+
+/* Parallax targets get GPU hints */
+[data-parallax],[data-float]{will-change:transform}
+
+/* Hero parallax layers (overrides default static positioning) */
+.hero__img{will-change:transform}
+.hero__content > *{will-change:transform}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════ TOPBAR ═══════════════════════════════ -->
+<div class="topbar" aria-label="Información del local">
+  <div class="topbar__track">
+    <div class="topbar__reel" aria-hidden="true">
+      <span class="topbar__item"><a href="https://instagram.com/lasfeliipas" target="_blank" rel="noopener">@lasfeliipas</a></span>
+      <span class="topbar__sep">✦</span>
+      <span class="topbar__item">Av. 53 e/ 16 y 17 · La Plata</span>
+      <span class="topbar__sep">✦</span>
+      <span class="topbar__item">Lun–Vie 08:30 — 19:30</span>
+      <span class="topbar__sep">✦</span>
+      <span class="topbar__item"><a href="https://instagram.com/lasfeliipas" target="_blank" rel="noopener">@lasfeliipas</a></span>
+      <span class="topbar__sep">✦</span>
+      <span class="topbar__item">Av. 53 e/ 16 y 17 · La Plata</span>
+      <span class="topbar__sep">✦</span>
+      <span class="topbar__item">Lun–Vie 08:30 — 19:30</span>
+      <span class="topbar__sep">✦</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ NAV ═══════════════════════════════ -->
+<header class="nav" id="nav">
+  <div class="nav__inner">
+    <a href="#" class="nav__brand">
+      <span class="nm">Las Feliipas</span>
+      <span class="sub">— Sabores al paso —</span>
+    </a>
+    <nav class="nav__links" aria-label="Principal">
+      <a href="#nosotros">Nosotros</a>
+      <a href="#menu">Menú</a>
+      <a href="#galeria">Galería</a>
+      <a href="#visita">Visitar</a>
+    </nav>
+    <div class="nav__actions">
+      <button class="cart-btn" id="open-cart" aria-label="Abrir carrito">
+        Carrito <span class="count" id="cart-count">0</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════════════════════════ HERO ═══════════════════════════════ -->
+<section class="hero" data-screen-label="01 Hero">
+  <div class="hero__img" data-parallax="0.35">
+    <div class="fallback" aria-hidden="true">
+      <div class="ph dark" data-label="img/hero/imagen-hero.png"></div>
+      <img src="img/hero/imagen-hero.png" alt="Las Feliipas — chipas recién horneadas" onerror="this.classList.add('broken')" />
+    </div>
+  </div>
+  <div class="hero__overlay" data-parallax="0.15"></div>
+
+  <div class="hero__content">
+    <div class="hero__top reveal-blur-stagger" data-parallax="-0.08">
+      <span class="eyebrow float-y">— Las Feliipas · La Plata</span>
+      <span class="eyebrow hero__top-right float-y delay-1">Est. 2020 · Av. 53 e/ 16 y 17</span>
+    </div>
+
+    <div class="hero__bottom" data-parallax="-0.18">
+      <div class="hero__lede reveal-blur-stagger">
+        <h1 class="hero__title">
+          Café, pastelería<br/>
+          y momentos que<br/>
+          se disfrutan <em>lento.</em>
+        </h1>
+        <p class="hero__subtitle">Especialidad, diseño y sabor en una experiencia artesanal única.</p>
+        <div class="hero__cta-row">
+          <a href="#menu" class="btn-solid">Ver Carta <span class="arrow"></span></a>
+        </div>
+      </div>
+      <div class="hero__meta reveal-blur float-y delay-2">
+        <strong>Hecho a diario</strong>
+        Lun a Vie · 08:30 — 19:30<br/>
+        Casa de comidas, pastelería &amp; café
+      </div>
+    </div>
+  </div>
+
+  <div class="hero__scroll float-y">Desliza para explorar</div>
+</section>
+
+<!-- ═══════════════════════════════ EDITORIAL STRIP ═══════════════════════════════ -->
+<section class="strip" data-screen-label="02 Editorial strip">
+  <div class="strip__intro reveal">
+    <span class="eyebrow">— I · Lo que servimos</span>
+    <h2 class="strip__heading">Tres oficios,<br/><em>una misma mesa.</em></h2>
+  </div>
+  <div class="strip__grid reveal-stagger">
+    <a class="strip__panel" href="#menu">
+      <div class="fallback">
+        <div class="ph dark" data-label="img/nosotros/cafe-felipa-pro.jpeg"></div>
+        <img src="img/nosotros/cafe-felipa-pro.jpeg" alt="Café de especialidad Las Feliipas" loading="lazy" onerror="this.classList.add('broken')" />
+      </div>
+      <div class="veil"></div>
+      <div class="strip__caption">
+        <span class="num">— 01 / Café</span>
+        <h3>Cafés<br/><em>Especiales</em></h3>
+        <div class="sub">Espresso · cold brew · 100% arábico</div>
+        <span class="strip__arrow" aria-hidden="true">↗</span>
+      </div>
+    </a>
+    <a class="strip__panel" href="#menu">
+      <div class="fallback">
+        <div class="ph dark" data-label="img/nosotros/medialuna-pro.jpeg"></div>
+        <img src="img/nosotros/medialuna-pro.jpeg" alt="Pastelería artesanal Las Feliipas" loading="lazy" onerror="this.classList.add('broken')" />
+      </div>
+      <div class="veil"></div>
+      <div class="strip__caption">
+        <span class="num">— 02 / Pastelería</span>
+        <h3>Pastelería<br/><em>Casera</em></h3>
+        <div class="sub">Medialunas, chipa, budín</div>
+        <span class="strip__arrow" aria-hidden="true">↗</span>
+      </div>
+    </a>
+    <a class="strip__panel" href="#menu">
+      <div class="fallback">
+        <div class="ph" data-label="img/SALADO/tarta-caprese.jpeg"></div>
+        <img src="img/SALADO/tarta-caprese.jpeg" alt="Tartas artesanales Las Feliipas" loading="lazy" onerror="this.classList.add('broken')" />
+      </div>
+      <div class="veil"></div>
+      <div class="strip__caption">
+        <span class="num">— 03 / Mesa</span>
+        <h3>Tartas<br/><em>&amp; Mesa</em></h3>
+        <div class="sub">Masa casera, jugos, mesa lenta</div>
+        <span class="strip__arrow" aria-hidden="true">↗</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ NOSOTROS ═══════════════════════════════ -->
+<section class="nosotros section-pad" id="nosotros" data-screen-label="03 Nosotros">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="num">— II</span>
+      <h2>Una casa<br/>de comidas<br/><em>en La Plata.</em></h2>
+      <p class="right">Tres oficios bajo un mismo techo: cocina, pastelería y café. Producción propia, recetas de toda la vida y todo hecho a diario en nuestro local de Avenida 53.</p>
+    </div>
+
+    <div class="nosotros__grid">
+      <div class="nosotros__hero reveal">
+        <div class="fallback">
+          <div class="ph dark" data-label="img/nosotros/animacion-nosotros.jpg"></div>
+          <img src="img/nosotros/animacion-nosotros.jpg" alt="Las Feliipas — Good things are happening" onerror="this.classList.add('broken')" />
+        </div>
+      </div>
+
+      <div class="nosotros__copy reveal">
+        <div class="eyebrow">Sobre nosotros</div>
+        <h2>Un horneado<br/>al día, sin<br/><em>vueltas.</em></h2>
+        <p>Abrimos temprano para amasar las tartas, hornear la pastelería y dejar listo el café antes de que llegue la primera persona. Trabajamos con productores locales y elegimos ingredientes que se notan en cada bocado.</p>
+        <p>Nuestra carta cambia con la estación pero la idea no: cocinar lo que comeríamos en casa, con tiempo y con cuidado, para que te lo lleves al paso o te quedes a comerlo acá.</p>
+        <div class="sign">Felipa &amp; equipo</div>
+
+        <div class="facts">
+          <div class="f">
+            <div class="k"><em>08:30</em></div>
+            <div class="l">Abrimos<br/>de lunes a viernes</div>
+          </div>
+          <div class="f">
+            <div class="k"><em>+40</em></div>
+            <div class="l">Productos<br/>hechos a diario</div>
+          </div>
+          <div class="f">
+            <div class="k"><em>A 2</em></div>
+            <div class="l">Cuadras de Plaza Moreno<br/>y de Plaza Malvinas</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="minis reveal-stagger" id="minis">
+      <!-- mini slideshows filled by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ MENÚ ═══════════════════════════════ -->
+<section class="menu section-pad" id="menu" data-screen-label="04 Menú">
+  <div class="container">
+    <div class="section-head reveal">
+      <h2>El menú<br/>de la <em>casa.</em></h2>
+      <p class="right">Pedí al paso o armá tu canasta para llevar. El pedido se envía directo por WhatsApp y lo preparamos para retirar por el local.</p>
+    </div>
+
+    <div class="menu__tabs reveal" id="menu-tabs">
+      <!-- filled by JS -->
+    </div>
+
+    <div class="menu__grid reveal-stagger" id="menu-grid">
+      <!-- filled by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ FULLBLEED DIVIDER ═══════════════════════════════ -->
+<section class="divider" data-screen-label="05 Divider">
+  <div class="bg">
+    <div class="fallback">
+      <div class="ph dark" data-label="img/nosotros/medialuna-pro.jpeg"></div>
+      <img src="img/nosotros/medialuna-pro.jpeg" alt="Medialunas artesanales Las Feliipas" onerror="this.classList.add('broken')" />
+    </div>
+  </div>
+  <div class="veil"></div>
+</section>
+
+<!-- ═══════════════════════════════ GALERÍA ═══════════════════════════════ -->
+<section class="vg-section" id="galeria" data-screen-label="06 Galería">
+  <div class="vg-head reveal">
+    <h2 class="vg-title">Lo que sale<br/>del <em>horno.</em></h2>
+    <span class="vg-hint">Deslizá para explorar →</span>
+  </div>
+  <div class="vg-wrap">
+    <div class="vg-track" id="vg-track"></div>
+  </div>
+  <div class="vg-vel"><span id="vg-vel-bar"></span></div>
+</section>
+
+<!-- ═══════════════════════════════ VISITA ═══════════════════════════════ -->
+<section class="visita section-pad" id="visita" data-screen-label="07 Visita">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="num">— VI</span>
+      <h2>Pasá a<br/><em>vernos.</em></h2>
+      <p class="right">Estamos a dos cuadras de Plaza Moreno y de Plaza Malvinas. Sentate, pedí un café y dejá que te llevemos la tarta a la mesa.</p>
+    </div>
+
+    <div class="visita__grid">
+      <div class="info reveal">
+        <div class="row">
+          <div class="k">Dirección</div>
+          <div class="v">Av. 53 e/ 16 y 17
+            <span class="s">La Plata, Buenos Aires<br/>Argentina, B1900</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="k">Horario</div>
+          <div class="v">Lunes a viernes
+            <span class="s">08:30 a 19:30 · sin interrupción</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="k">Pedidos</div>
+          <div class="v"><a href="https://wa.me/5492214771438" target="_blank" rel="noopener">+54 9 221 477-1438</a>
+            <span class="s">WhatsApp · respondemos en el día</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="k">Instagram</div>
+          <div class="v"><a href="https://instagram.com/lasfeliipas" target="_blank" rel="noopener">@lasfeliipas</a>
+            <span class="s">Novedades y la pizarra del día</span>
+          </div>
+        </div>
+
+        <div class="visita__cta">
+          <a class="btn-line" href="https://maps.google.com/?q=Av.+53+entre+16+y+17,+La+Plata" target="_blank" rel="noopener">Ver en Google Maps <span class="arrow"></span></a>
+          <a class="btn-line" href="https://wa.me/5492214771438" target="_blank" rel="noopener">Escribir por WhatsApp <span class="arrow"></span></a>
+        </div>
+      </div>
+
+      <div class="map reveal">
+        <iframe
+          src="https://www.openstreetmap.org/export/embed.html?bbox=-57.9657%2C-34.9309%2C-57.9497%2C-34.9189&layer=mapnik&marker=-34.9249%2C-57.9577"
+          title="Mapa — Las Feliipas, La Plata"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <div class="map__badge">
+          <span class="map__badge-eyebrow">Estamos acá</span>
+          <span class="map__badge-name">Las Feliipas</span>
+          <span class="map__badge-addr">Av. 53 e/ 16 y 17 · La Plata</span>
+        </div>
+        <a class="map__open" href="https://www.google.com/maps/search/?api=1&query=-34.9248979428093,-57.957656385110866" target="_blank" rel="noopener">Abrir en Google Maps →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ FOOTER ═══════════════════════════════ -->
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__brand">Las <em style="font-style:italic">Feliipas</em><span class="sub">— Sabores al paso —</span></div>
+
+    <div class="footer__cols">
+      <div class="footer__col">
+        <h5>Dirección</h5>
+        <p>Av. 53 e/ 16 y 17<br/>La Plata, Buenos Aires</p>
+      </div>
+      <div class="footer__col">
+        <h5>Horario</h5>
+        <p>Lun a Vie<br/>08:30 — 19:30</p>
+      </div>
+      <div class="footer__col">
+        <h5>Pedidos</h5>
+        <a href="https://wa.me/5492214771438" target="_blank" rel="noopener">+54 9 221 477-1438</a>
+        <a href="https://instagram.com/lasfeliipas" target="_blank" rel="noopener">@lasfeliipas</a>
+      </div>
+      <div class="footer__col">
+        <h5>Navegar</h5>
+        <a href="#nosotros">Nosotros</a>
+        <a href="#menu">Menú</a>
+        <a href="#galeria">Galería</a>
+        <a href="#visita">Visitar</a>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <span>© 2026 Las Feliipas · Sabores al paso</span>
+      <span>Hecho con cuidado en La Plata</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════ SOCIAL RAIL ═══════════════════════════════ -->
+<aside class="social-rail" aria-label="Redes sociales y ubicación">
+
+  <!-- WhatsApp -->
+  <a class="social-rail__link" href="https://wa.me/5492214771438" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.533 5.857L.057 23.215a.75.75 0 0 0 .92.92l5.356-1.476A11.954 11.954 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75A9.75 9.75 0 0 1 2.25 12 9.75 9.75 0 0 1 12 2.25 9.75 9.75 0 0 1 21.75 12 9.75 9.75 0 0 1 12 21.75z"/></svg>
+  </a>
+
+  <!-- Instagram -->
+  <a class="social-rail__link" href="https://instagram.com/lasfeliipas" target="_blank" rel="noopener" aria-label="Instagram">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+  </a>
+
+  <!-- TikTok -->
+  <a class="social-rail__link" href="https://www.tiktok.com/@lasfeliipas" target="_blank" rel="noopener" aria-label="TikTok">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.34 6.34 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"/></svg>
+  </a>
+
+  <!-- Mapa -->
+  <a class="social-rail__link" href="https://maps.google.com/?q=Av.+53+entre+16+y+17,+La+Plata" target="_blank" rel="noopener" aria-label="Ver en Google Maps">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+  </a>
+
+</aside>
+
+<!-- ═══════════════════════════════ CART DRAWER ═══════════════════════════════ -->
+<div class="drawer-scrim" id="drawer-scrim"></div>
+<aside class="drawer" id="drawer" aria-label="Carrito de pedido">
+  <div class="drawer__head">
+    <h3>Tu pedido</h3>
+    <button class="drawer__close" id="close-cart" aria-label="Cerrar">×</button>
+  </div>
+  <div class="drawer__items" id="drawer-items">
+    <div class="drawer__empty" id="drawer-empty">
+      <div class="eyebrow">Carrito vacío</div>
+      <p style="font-family:var(--display);font-style:italic;font-size:22px;line-height:1.3">Agregá productos del menú<br/>para armar tu pedido.</p>
+    </div>
+  </div>
+  <div class="upsell" id="upsell" style="display:none">
+    <div class="eyebrow">Te puede gustar</div>
+    <div class="upsell__row" id="upsell-row"></div>
+  </div>
+  <div class="drawer__foot">
+    <div class="row"><span>Subtotal</span><span id="cart-subtotal">$ 0</span></div>
+    <div class="row" style="font-size:12px;opacity:.7"><span>Retiro por el local</span><span>Gratis</span></div>
+    <div class="row total"><span>Total</span><span class="v" id="cart-total">$ 0</span></div>
+    <button class="wa-btn" id="checkout-wa" disabled>
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.87 9.87 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91s-4.45-9.92-9.92-9.92zm5.79 14.18c-.24.69-1.42 1.32-1.97 1.4-.51.08-1.13.11-1.82-.11-.42-.13-.96-.31-1.66-.61-2.91-1.26-4.82-4.2-4.96-4.39-.15-.2-1.2-1.59-1.2-3.04 0-1.45.76-2.16 1.03-2.46.27-.3.6-.37.79-.37.2 0 .4 0 .57.01.18.01.43-.07.67.51.24.59.83 2.04.9 2.18.07.15.12.32.02.51-.1.2-.15.32-.3.49-.15.18-.32.39-.45.53-.15.15-.31.31-.13.61.18.3.78 1.29 1.68 2.09 1.16 1.03 2.13 1.36 2.43 1.51.3.15.47.13.65-.08.18-.2.75-.87.95-1.17.2-.3.4-.25.67-.15.27.1 1.72.81 2.02.96.3.15.5.22.57.34.07.13.07.73-.17 1.42z"/></svg>
+      Pedir por WhatsApp
+    </button>
+  </div>
+</aside>
+
+<!-- ═══════════════════════════════ OPTIONS MODAL ═══════════════════════════════ -->
+<div class="modal-scrim" id="modal-scrim">
+  <div class="modal" id="modal" role="dialog" aria-modal="true">
+    <div class="modal__head">
+      <div>
+        <h3 id="modal-title"></h3>
+        <div class="desc" id="modal-desc"></div>
+      </div>
+      <button class="drawer__close" id="modal-close" aria-label="Cerrar">×</button>
+    </div>
+    <div class="modal__body" id="modal-body"></div>
+    <div class="modal__foot">
+      <div class="price" id="modal-price">$ 0</div>
+      <button class="add-btn" id="modal-add">Agregar al pedido <span class="arrow"></span></button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<button class="cart-fab" id="cart-fab" aria-label="Ver carrito" type="button">
+  <span class="cart-fab__icon" aria-hidden="true">
+    <svg viewBox="0 0 24 24"><path d="M6 7h12l-1.2 11a2 2 0 0 1-2 1.8H9.2a2 2 0 0 1-2-1.8L6 7z"/><path d="M9 7V5a3 3 0 0 1 6 0v2"/></svg>
+  </span>
+  <span class="cart-fab__thumbs" id="cart-fab-thumbs"></span>
+  <span class="cart-fab__txt">
+    <span class="cart-fab__cta">Ver pedido</span>
+    <span class="cart-fab__total" id="cart-fab-total">$ 0</span>
+  </span>
+  <span class="cart-fab__count" id="cart-fab-count">0</span>
+</button>
+
+<div class="toast" id="toast"><span class="dot"></span> <span id="toast-text">Agregado</span></div>
+
+<!-- ═══════════════════════════════ DATA + JS ═══════════════════════════════ -->
+<script>
+/* ──────────── MENU DATA ──────────── */
+const MENU = [
+  // SALADO · Tartas $5.500
+  { id:'s-tarta-pollo',     cat:'salado', name:'Tarta de pollo',             desc:'Pollo, cebolla y morrón. Masa hojaldrada, porción individual.', price:5500, img:'img/SALADO/tarta-pollo.jpeg' },
+  { id:'s-tarta-caprese',   cat:'salado', name:'Tarta de tomate y albahaca', desc:'Tomate, mozzarella y albahaca fresca.', price:5500, img:'img/SALADO/tarta-caprese.jpeg' },
+  { id:'s-tarta-zapallito', cat:'salado', name:'Tarta de zapallito',         desc:'Zapallito, cebolla y queso, gratinada.', price:5500, img:'img/SALADO/tarta-zapallito.jpeg' },
+  { id:'s-tarta-calabaza',  cat:'salado', name:'Tarta de calabaza',          desc:'Calabaza asada, cebolla caramelizada y muzarella.', price:5500, img:'img/SALADO/tarta-de-calabaza.png' },
+  { id:'s-tarta-jyq',       cat:'salado', name:'Tarta jamón y queso',        desc:'La clásica de toda la vida.', price:5500, img:'img/SALADO/tarta-jyq.jpeg' },
+  { id:'s-tarta-jyqceb',    cat:'salado', name:'Tarta j&q, huevo y cebolla', desc:'Jamón, queso, huevo y cebolla salteada.', price:5500, img:'img/SALADO/tarta-jyq-y-ceb.jpeg' },
+  { id:'s-tarta-verdura',   cat:'salado', name:'Tarta de verdura',           desc:'Acelga, cebolla, huevo y nuez moscada.', price:5500, img:'img/SALADO/tarta-de-verdura.jpeg' },
+
+  // SALADO · Pizzas
+  { id:'s-pizza-muza', cat:'salado', name:'Pizza muzarella',  desc:'Individual, salsa de tomate casera, muza fundida.', price:5800, img:'img/SALADO/pizza.jpeg' },
+  { id:'s-pizza-ceb',  cat:'salado', name:'Pizza de cebolla', desc:'Fugazza individual, cebolla, orégano.',           price:5800, img:'img/SALADO/pizza-ceb.jpeg' },
+
+  // SALADO · Empanadas $1.800 c/u
+  { id:'s-emp-carne',   cat:'salado', name:'Empanada de carne',         desc:'Suave, cortada a cuchillo, con huevo y aceituna.', price:1800, img:'img/SALADO/emp-carne.jpeg',   options:[{group:'Unidades',required:true,multi:false,items:[{n:'1 unidad',d:0},{n:'½ docena',d:9000},{n:'1 docena',d:18900}]}] },
+  { id:'s-emp-verdura', cat:'salado', name:'Empanada de verdura',       desc:'Acelga, salsa blanca, nuez moscada.',              price:1800, img:'img/SALADO/emp-verdura.jpeg', options:[{group:'Unidades',required:true,multi:false,items:[{n:'1 unidad',d:0},{n:'½ docena',d:9000},{n:'1 docena',d:18900}]}] },
+  { id:'s-emp-jyq',     cat:'salado', name:'Empanada de jamón y queso', desc:'Jamón cocido y muzarella.',                         price:1800, img:'img/SALADO/emp-jyq.jpeg',     options:[{group:'Unidades',required:true,multi:false,items:[{n:'1 unidad',d:0},{n:'½ docena',d:9000},{n:'1 docena',d:18900}]}] },
+  { id:'s-emp-pollo',   cat:'salado', name:'Empanada de pollo',         desc:'Pollo y verdeo, jugosa.',                          price:1800, img:'img/SALADO/emp-pollo.jpeg',   options:[{group:'Unidades',required:true,multi:false,items:[{n:'1 unidad',d:0},{n:'½ docena',d:9000},{n:'1 docena',d:18900}]}] },
+
+  // SALADO · Sandwiches
+  { id:'sw-jyq',          cat:'salado', name:'Sandwich jamón y queso',           desc:'Jamón cocido y muzarella.',                                price:3000, img:'img/SALADO/sandw-jyq.jpeg',                  options:[{group:'Pan',required:true,multi:false,items:[{n:'Árabe',d:0},{n:'Sacramento',d:0},{n:'Baguette',d:0},{n:'Salvado',d:0}]}] },
+  { id:'sw-completo',     cat:'salado', name:'Sandwich completo',                 desc:'Jamón, queso, tomate, lechuga, huevo y mayonesa.',         price:3500, img:'img/SALADO/sandw-completo.jpeg',             options:[{group:'Pan',required:true,multi:false,items:[{n:'Árabe',d:0},{n:'Sacramento',d:0},{n:'Baguette',d:0},{n:'Salvado',d:0}]}] },
+  { id:'sw-mil-solo',     cat:'salado', name:'Sandwich de milanesa',              desc:'Milanesa recién hecha, lechuga y tomate.',                 price:6000, img:'img/SALADO/sandwich-milanesa-completo.png',  options:[{group:'Carne',required:true,multi:false,items:[{n:'Carne',d:0},{n:'Pollo',d:0}]},{group:'Pan',required:true,multi:false,items:[{n:'Árabe',d:0},{n:'Sacramento',d:0},{n:'Baguette',d:0},{n:'Salvado',d:0}]}] },
+  { id:'sw-mil-jyq',      cat:'salado', name:'Milanesa con jamón y queso',       desc:'Milanesa, jamón cocido y queso fundido.',                   price:6500, img:'img/SALADO/sandw-mil-jyq.png',               options:[{group:'Carne',required:true,multi:false,items:[{n:'Carne',d:0},{n:'Pollo',d:0}]},{group:'Pan',required:true,multi:false,items:[{n:'Árabe',d:0},{n:'Sacramento',d:0},{n:'Baguette',d:0},{n:'Salvado',d:0}]}] },
+  { id:'sw-mil-completo', cat:'salado', name:'Milanesa completa',                 desc:'Milanesa, jamón, queso, huevo, tomate y lechuga.',         price:7500, img:'img/SALADO/sandwich-milanesa-completo.png',  options:[{group:'Carne',required:true,multi:false,items:[{n:'Carne',d:0},{n:'Pollo',d:0}]},{group:'Pan',required:true,multi:false,items:[{n:'Árabe',d:0},{n:'Sacramento',d:0},{n:'Baguette',d:0},{n:'Salvado',d:0}]}] },
+
+  // ENSALADAS
+  { id:'e-medida', cat:'ensaladas', name:'Ensalada a tu medida', desc:'3 ingredientes $4000 · 4 o 5 ingredientes $4500 · 6 o más $5000', price:4000, saladPricing:true, img:'img/SALADO/ensalada.jpeg', options:[{group:'Ingredientes',required:true,multi:true,items:[{n:'Lechuga',d:0},{n:'Repollo blanco',d:0},{n:'Repollo morado',d:0},{n:'Tomate',d:0},{n:'Zanahoria',d:0},{n:'Arvejas',d:0},{n:'Huevo',d:0},{n:'Lenteja',d:0},{n:'Arroz',d:0},{n:'Choclo',d:0},{n:'Crutones',d:0}]},{group:'Extras',required:false,multi:true,items:[{n:'Pollo',d:500},{n:'Atún',d:500},{n:'Jamón',d:500},{n:'Queso',d:500}]}] },
+
+  // PASTELERÍA · Repostería
+  { id:'p-cookie-trad',     cat:'pasteleria', name:'Cookie tradicional',  desc:'Chips de chocolate, manteca y avena.',     price:2500, img:'img/PASTELERIA/cookie-tradicional.jpeg' },
+  { id:'p-cookie-pistacho', cat:'pasteleria', name:'Cookie de pistacho',  desc:'Manteca, pistacho y chips. Crocante por fuera.', price:2800, img:'img/pasteleria/cookie-pistacho.png' },
+  { id:'p-brownie',         cat:'pasteleria', name:'Brownie',             desc:'Húmedo, intenso, con nuez tostada.',       price:3000, img:'img/PASTELERIA/brownie.jpeg' },
+  { id:'p-alfajor',         cat:'pasteleria', name:'Alfajor de maicena',  desc:'Dulce de leche y coco. Receta de la abuela.', price:2500, img:'img/PASTELERIA/alfaj-maiz.jpeg', options:[{group:'Cantidad',required:true,multi:false,items:[{n:'¼ docena',d:0},{n:'½ docena',d:2200},{n:'1 docena',d:6400}]}] },
+  { id:'p-pastafrola',      cat:'pasteleria', name:'Pastafrola',          desc:'De membrillo, masa quebrada.',             price:2300, img:'img/PASTELERIA/pastafrola.png' },
+  { id:'p-limon',           cat:'pasteleria', name:'Cuadradito de limón', desc:'Masa sablée, lemon curd, merengue.',      price:2500, img:'img/PASTELERIA/cuadradito-limon.jpeg' },
+  { id:'p-cuadrad-manzana', cat:'pasteleria', name:'Cuadradito de manzana', desc:'Manzana, canela, masa quebrada.',         price:2500, img:'img/PASTELERIA/torta-manzana.jpeg' },
+  { id:'p-budin',           cat:'pasteleria', name:'Budín casero',        desc:'Naranja, chocolate, chocolate con nuez o banana.',  price:6000, img:'img/PASTELERIA/budin.png',     options:[{group:'Sabor',required:true,multi:false,items:[{n:'Naranja',d:0},{n:'Chocolate',d:0},{n:'Chocolate con nuez',d:0},{n:'Banana',d:0}]}] },
+  { id:'p-tiramisu',        cat:'pasteleria', name:'Tiramisú',            desc:'Café, mascarpone, cacao. Porción individual.', price:4500, img:'img/PASTELERIA/tiramisu.jpeg' },
+  { id:'p-flan',            cat:'pasteleria', name:'Flan casero',         desc:'Con dulce de leche y crema, a elección.',  price:3500, img:'img/PASTELERIA/flan.jpeg',     options:[{group:'Acompañamiento',required:false,multi:true,items:[{n:'+ dulce de leche',d:400},{n:'+ crema',d:400}]}] },
+  { id:'p-torta-matera',    cat:'pasteleria', name:'Torta matera',        desc:'Bizcocho con pasas, ideal con mate.',      price:3500, img:'img/PASTELERIA/torta-matera.jpeg' },
+  { id:'p-rol-canela',      cat:'pasteleria', name:'Roll de canela',      desc:'Glaseado, canela y manteca, recién horneado.', price:3000, img:'img/PASTELERIA/rol-de-canela.jpeg' },
+
+  // PASTELERÍA · Panadería
+  { id:'p-chipa',          cat:'pasteleria', name:'Chipas',                       desc:'Calientes, queso y almidón de mandioca.',    price:2200, img:'img/PASTELERIA/chipa.jpeg',          options:[{group:'Cantidad',required:true,multi:false,items:[{n:'¼ kg',d:0},{n:'½ kg',d:2200},{n:'1 kg',d:6400}]}] },
+  { id:'p-criollitos',     cat:'pasteleria', name:'Criollitos',                   desc:'Hojaldre con grasa, salados.',                 price:2400, img:'img/PASTELERIA/criollitos.png',     options:[{group:'Cantidad',required:true,multi:false,items:[{n:'¼ kg',d:0},{n:'½ kg',d:2400},{n:'1 kg',d:6800}]}] },
+  { id:'p-medialuna',      cat:'pasteleria', name:'Medialunas',                   desc:'De manteca, glaseadas. Recién horneadas.',     price:7200, img:'img/pasteleria/medialunas.png',     options:[{group:'Cantidad',required:true,multi:false,items:[{n:'½ docena',d:0},{n:'1 docena',d:6800}]}] },
+  { id:'p-medialuna-jyq',  cat:'pasteleria', name:'Medialuna con jamón y queso', desc:'Tibia, abierta y rellena. Por unidad.',        price:2800, img:'img/pasteleria/medialuna-jyq.png' },
+
+  // CAFÉS · 100% arábico
+  { id:'c-espresso',  cat:'cafes', name:'Café espresso', desc:'100% arábico, elegí la variedad de la casa.', price:3500, img:'img/cafe/cafe-sin-tx.jpg', options:[{group:'Variedad',required:true,multi:false,items:[{n:'Rotondo',d:0},{n:'Descafeinado',d:0},{n:'Dolce',d:0},{n:'Tierra',d:0},{n:'Ricco',d:0},{n:'Café del día',d:0}]}] },
+  { id:'c-cafe-leche', cat:'cafes', name:'Café con leche', desc:'Espresso doble + leche cremosa.',              price:4000, img:'img/cafe/cafe-sin-tx.jpg', options:[{group:'Tamaño',required:true,multi:false,items:[{n:'Chico',d:0},{n:'Grande',d:600}]},{group:'Leche',required:true,multi:false,items:[{n:'Entera',d:0},{n:'Descremada',d:0},{n:'Almendras',d:500}]}] },
+  { id:'c-cafe-frio',  cat:'cafes', name:'Café frío',       desc:'Cold brew de la casa, suave y aromático.',     price:4500, img:'img/cafe/cafe-frio.png', options:[{group:'Tamaño',required:true,multi:false,items:[{n:'Chico',d:0},{n:'Grande',d:600}]}] },
+
+  // BEBIDAS · Infusiones
+  { id:'c-te', cat:'cafes', name:'Té', desc:'En hebras, varias variedades.', price:2500, img:'img/BEBIDAS/te.jpg', options:[{group:'Variedad',required:true,multi:false,items:[{n:'Clásico',d:0},{n:'Durazno',d:0},{n:'Verde',d:0},{n:'Frutilla',d:0}]}] },
+
+  // BEBIDAS · Frías
+  { id:'b-agua',        cat:'bebidas', name:'Agua mineral',  desc:'Natural. 500ml.',              price:1500, img:'img/BEBIDAS/agua.jpg' },
+  { id:'b-coca',        cat:'bebidas', name:'Coca-Cola',     desc:'500ml.',                       price:2000, img:'img/BEBIDAS/coca-cola.jpg' },
+  { id:'b-coca-zero',   cat:'bebidas', name:'Coca-Cola Zero',desc:'500ml.',                       price:2000, img:'img/BEBIDAS/coca-zero.jpg' },
+  { id:'b-sprite',      cat:'bebidas', name:'Sprite',        desc:'500ml.',                       price:1800, img:'img/BEBIDAS/sprite.jpg' },
+  { id:'b-fanta',       cat:'bebidas', name:'Fanta',         desc:'500ml.',                       price:1800, img:'img/BEBIDAS/fanta.jpg' },
+  { id:'b-levite',      cat:'bebidas', name:'Levité',        desc:'Agua saborizada 500ml.',       price:1800, img:'img/BEBIDAS/levite.jpg',       options:[{group:'Sabor',required:true,multi:false,items:[{n:'Naranja',d:0},{n:'Manzana',d:0},{n:'Pomelo',d:0},{n:'Pera',d:0}]}] },
+  { id:'b-baggio',      cat:'bebidas', name:'Baggio 200ml',  desc:'Jugo en tetra.',               price:1000, img:'img/BEBIDAS/baggio-200.jpg',  options:[{group:'Sabor',required:true,multi:false,items:[{n:'Naranja',d:0},{n:'Manzana',d:0},{n:'Multifruta',d:0}]}] },
+  { id:'b-baggio-1l',   cat:'bebidas', name:'Baggio Multifruta 1 L', desc:'Jugo en botella.', price:null, img:'img/BEBIDAS/baggio-1lt.png' },
+  { id:'b-chocolatada', cat:'bebidas', name:'Chocolatada',   desc:'200ml, en cartón.',            price:1000, img:'img/BEBIDAS/chocolatada.jpg' },
+];
+
+const CATEGORIES = [
+  { id:'salado',     label:'Salado' },
+  { id:'ensaladas',  label:'Ensaladas' },
+  { id:'pasteleria', label:'Pastelería' },
+  { id:'cafes',      label:'Cafés' },
+  { id:'bebidas',    label:'Bebidas' },
+];
+
+/* Mini slideshows under Nosotros */
+const MINIS = [
+  { n:'01', label:'Tartas',     sub:'Salado · al horno', imgs:['img/SALADO/tarta-caprese.jpeg','img/SALADO/tarta-de-calabaza.png','img/SALADO/tarta-zapallito.jpeg','img/SALADO/tarta-de-verdura.jpeg','img/SALADO/tarta-jyq.jpeg'] },
+  { n:'02', label:'Panadería',  sub:'Recién horneada',  imgs:['img/pasteleria/medialunas.png','img/PASTELERIA/chipa.jpeg','img/PASTELERIA/criollitos.png','img/pasteleria/medialuna-jyq.png'] },
+  { n:'03', label:'Dulces',     sub:'De casa, todos los días', imgs:['img/pasteleria/budin.png','img/pasteleria/rol-de-canela.jpeg','img/PASTELERIA/tiramisu.jpeg'] },
+];
+
+const GALERIA = [
+  { type:'full',  label:'Tartas',      small:'Salado · hechas hoy',  imgs:['img/SALADO/tarta-caprese.jpeg','img/SALADO/tarta-de-calabaza.png','img/SALADO/tarta-zapallito.jpeg','img/SALADO/tarta-de-verdura.jpeg','img/SALADO/tarta-jyq.jpeg'] },
+  { type:'split', label:'Pizzas',      small:'Salado · al horno',    imgs:['img/SALADO/pizza-sin-tx.jpeg','img/SALADO/pizza-ceb-sin-tx.jpeg'], copy:'forest' },
+  { type:'split', label:'Café',        small:'Cafés · 100% arábico', imgs:['img/cafe/cafe-sin-tx.jpg','img/cafe/cafe-frio-sin-tx.png','img/nosotros/cafe-felipa-pro-sin-tx.png'], copy:'ivory' },
+  { type:'split', label:'Sandwiches',  small:'Salado · al paso',     imgs:['img/SALADO/sandw-jyq.jpeg','img/SALADO/sandw-completo.jpeg','img/SALADO/sandw-mil-jyq.png','img/SALADO/sandwich-milanesa-completo.png'], copy:'forest', rev:true },
+  { type:'full',  label:'Panadería',   small:'Recién horneada',      imgs:['img/pasteleria/cookie-pistacho.png','img/pasteleria/chipa.jpeg','img/pasteleria/criollitos.png','img/pasteleria/medialunas.png','img/pasteleria/medialuna-jyq.png'] },
+];
+
+const PHONE = '5492214771438'; // WhatsApp
+const fmt = (n) => n == null ? 'A consultar' : '$ ' + n.toLocaleString('es-AR');
+
+/* ──────────── HELPER: image with fallback ──────────── */
+function imgHTML(src, label){
+  return `<div class="fallback">
+    <div class="ph" data-label="${label.replace(/"/g,'&quot;')}"></div>
+    <img src="${src}" alt="${label}" loading="lazy" onerror="this.classList.add('broken')" />
+  </div>`;
+}
+
+/* ──────────── RENDER MENU TABS + GRID ──────────── */
+const tabsEl = document.getElementById('menu-tabs');
+const gridEl = document.getElementById('menu-grid');
+let activeCat = 'salado';
+
+function renderTabs(){
+  tabsEl.innerHTML = CATEGORIES.map(c => {
+    const ct = MENU.filter(m => m.cat === c.id).length;
+    return `<button class="tab ${c.id===activeCat?'active':''}" data-cat="${c.id}">${c.label} <span class="ct">${String(ct).padStart(2,'0')}</span></button>`;
+  }).join('');
+  tabsEl.querySelectorAll('.tab').forEach(b => {
+    b.addEventListener('click', () => {
+      if (b.dataset.cat === activeCat) return;
+      activeCat = b.dataset.cat;
+      gridEl.classList.add('swapping');
+      // bring the clicked tab into view inside the sticky bar
+      b.scrollIntoView({ behavior:'smooth', block:'nearest', inline:'center' });
+      setTimeout(() => {
+        renderTabs();
+        renderGrid();
+        gridEl.scrollIntoView({ behavior:'smooth', block:'start' });
+        requestAnimationFrame(() => gridEl.classList.remove('swapping'));
+      }, 220);
+    });
+  });
+}
+
+function renderGrid(){
+  const items = MENU.filter(m => m.cat === activeCat);
+  gridEl.classList.remove('in');
+  gridEl.dataset.cat = activeCat;
+  gridEl.innerHTML = items.map(m => `
+    <article class="card" data-id="${m.id}">
+      <div class="card__img">
+        ${imgHTML(m.img, m.name)}
+        ${m.badge ? `<span class="card__badge">${m.badge}</span>` : (m.options ? '<span class="card__tag">Personalizable</span>' : '')}
+      </div>
+      <div class="card__body">
+        <div>
+          <h4>${m.name}</h4>
+          <div class="card__price">${fmt(m.price)}</div>
+        </div>
+        <div class="card__qty" data-id="${m.id}" data-has-opts="${m.options?'1':'0'}">
+          <button class="card__qty-btn minus" data-act="dec" aria-label="Quitar uno de ${m.name}">−</button>
+          <span class="qty" aria-hidden="true">0</span>
+          <button class="card__qty-btn plus" data-act="inc" aria-label="Agregar ${m.name}">+</button>
+        </div>
+      </div>
+    </article>
+  `).join('');
+
+  // wire qty controls
+  gridEl.querySelectorAll('.card__qty-btn').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      const wrap = btn.closest('.card__qty');
+      const item = MENU.find(x => x.id === wrap.dataset.id);
+      const act = btn.dataset.act;
+      if (act === 'inc'){
+        if (item.options) openOptionsModal(item);
+        else { addToCart(item, []); flashAdd(wrap); }
+      } else if (act === 'dec'){
+        decrementItem(item.id);
+        flashAdd(wrap);
+      }
+    });
+  });
+  gridEl.querySelectorAll('.card').forEach(c => {
+    c.addEventListener('click', () => {
+      const item = MENU.find(x => x.id === c.dataset.id);
+      if (item.options) openOptionsModal(item);
+      else { addToCart(item, []); flashAdd(c.querySelector('.card__qty')); }
+    });
+  });
+
+  // re-trigger reveal
+  setTimeout(() => gridEl.classList.add('in'), 30);
+  syncCardCounts();
+}
+
+function itemQtyInCart(id){
+  return CART.filter(l => l.item.id === id).reduce((s,l)=>s+l.qty, 0);
+}
+function syncCardCounts(){
+  document.querySelectorAll('.card__qty').forEach(wrap => {
+    const id = wrap.dataset.id;
+    const n = itemQtyInCart(id);
+    const qtyEl = wrap.querySelector('.qty');
+    if (n > 0){ wrap.classList.add('has-qty'); if(qtyEl) qtyEl.textContent = n; }
+    else { wrap.classList.remove('has-qty'); if(qtyEl) qtyEl.textContent = '0'; }
+  });
+}
+function flashAdd(el){
+  if (!el) return;
+  el.classList.remove('bump');
+  void el.offsetWidth;
+  el.classList.add('bump');
+  setTimeout(() => el.classList.remove('bump'), 380);
+}
+function decrementItem(id){
+  // For simple items (no options): there's at most one line with that id.
+  // For items with options: decrement the most recently added matching line.
+  const lines = CART.filter(l => l.item.id === id);
+  if (!lines.length) return;
+  const target = lines[lines.length - 1];
+  changeQty(target.key, -1);
+}
+
+/* ──────────── OPTIONS MODAL ──────────── */
+let modalCtx = null;
+const modalScrim = document.getElementById('modal-scrim');
+const modalTitle = document.getElementById('modal-title');
+const modalDesc  = document.getElementById('modal-desc');
+const modalBody  = document.getElementById('modal-body');
+const modalPrice = document.getElementById('modal-price');
+const modalAdd   = document.getElementById('modal-add');
+const modalClose = document.getElementById('modal-close');
+
+function openOptionsModal(item){
+  modalCtx = { item, selections: item.options.map(g => g.multi ? [] : (g.required ? 0 : null)) };
+  modalTitle.textContent = item.name;
+  modalDesc.textContent  = '';
+  renderOptions();
+  updateModalPrice();
+  modalScrim.classList.add('open');
+}
+function closeOptionsModal(){
+  modalScrim.classList.remove('open');
+  modalCtx = null;
+}
+function renderOptions(){
+  modalBody.innerHTML = modalCtx.item.options.map((g, gi) => `
+    <div class="opt-group">
+      <div class="opt-group__title"><span>${g.group}</span>${g.required?'<span class="req">Requerido</span>':'<span style="opacity:.5">Opcional</span>'}</div>
+      <div class="opt-list">
+        ${g.items.map((it, ii) => {
+          const sel = modalCtx.selections[gi];
+          const isSel = g.multi ? (Array.isArray(sel) && sel.includes(ii)) : sel === ii;
+          const delta = it.d ? (it.d>0?' +'+fmt(it.d):' '+fmt(it.d)) : '';
+          return `<button class="opt-pill ${isSel?'selected':''}" data-gi="${gi}" data-ii="${ii}">${it.n}${delta}</button>`;
+        }).join('')}
+      </div>
+    </div>
+  `).join('');
+  modalBody.querySelectorAll('.opt-pill').forEach(p => {
+    p.addEventListener('click', () => {
+      const gi = +p.dataset.gi, ii = +p.dataset.ii;
+      const g = modalCtx.item.options[gi];
+      if (g.multi){
+        const arr = modalCtx.selections[gi] || [];
+        const idx = arr.indexOf(ii);
+        if (idx >= 0) arr.splice(idx,1); else arr.push(ii);
+        modalCtx.selections[gi] = arr;
+      } else {
+        modalCtx.selections[gi] = ii;
+      }
+      renderOptions();
+      updateModalPrice();
+    });
+  });
+}
+function saladPrice(count){
+  if (count <= 3) return 4000;
+  if (count <= 5) return 4500;
+  return 5000;
+}
+function updateModalPrice(){
+  let p;
+  if (modalCtx.item.saladPricing){
+    const count = (modalCtx.selections[0] || []).length;
+    p = saladPrice(count);
+    // sumar extras
+    modalCtx.item.options.forEach((g, gi) => {
+      if (gi === 0) return; // skip Ingredientes
+      const sel = modalCtx.selections[gi];
+      if (g.multi && Array.isArray(sel)) sel.forEach(ii => p += g.items[ii].d || 0);
+    });
+    const label = count === 0 ? '' : count <= 3 ? ' · Chica' : count <= 5 ? ' · Mediana' : ' · Grande';
+    modalPrice.innerHTML = fmt(p) + (label ? `<span style="font-size:11px;font-family:var(--mono);letter-spacing:.12em;opacity:.55;margin-left:8px">${label}</span>` : '');
+    return;
+  }
+  p = modalCtx.item.price;
+  modalCtx.item.options.forEach((g, gi) => {
+    const sel = modalCtx.selections[gi];
+    if (g.multi && Array.isArray(sel)) sel.forEach(ii => p += g.items[ii].d || 0);
+    else if (sel !== null && sel !== undefined) p += g.items[sel]?.d || 0;
+  });
+  modalPrice.textContent = fmt(p);
+}
+modalClose.addEventListener('click', closeOptionsModal);
+modalScrim.addEventListener('click', e => { if (e.target === modalScrim) closeOptionsModal(); });
+modalAdd.addEventListener('click', () => {
+  const opts = [];
+  modalCtx.item.options.forEach((g, gi) => {
+    const sel = modalCtx.selections[gi];
+    if (g.multi && Array.isArray(sel)) sel.forEach(ii => opts.push({ g: g.group, label: g.items[ii].n, d: g.items[ii].d }));
+    else if (sel !== null && sel !== undefined) opts.push({ g: g.group, label: g.items[sel].n, d: g.items[sel].d });
+  });
+  let priceOverride = null;
+  if (modalCtx.item.saladPricing){
+    const count = (modalCtx.selections[0] || []).length;
+    priceOverride = saladPrice(count);
+    modalCtx.item.options.forEach((g, gi) => {
+      if (gi === 0) return;
+      const sel = modalCtx.selections[gi];
+      if (g.multi && Array.isArray(sel)) sel.forEach(ii => priceOverride += g.items[ii].d || 0);
+    });
+  }
+  addToCart(modalCtx.item, opts, priceOverride);
+  closeOptionsModal();
+});
+
+/* ──────────── CART ──────────── */
+let CART = []; // {item, opts, qty, unitPrice}
+const drawer = document.getElementById('drawer');
+const drawerScrim = document.getElementById('drawer-scrim');
+const drawerItems = document.getElementById('drawer-items');
+const drawerEmpty = document.getElementById('drawer-empty');
+const cartCount = document.getElementById('cart-count');
+const cartSubtotal = document.getElementById('cart-subtotal');
+const cartTotal = document.getElementById('cart-total');
+const checkoutBtn = document.getElementById('checkout-wa');
+const upsellEl = document.getElementById('upsell');
+const upsellRow = document.getElementById('upsell-row');
+
+function lineUnitPrice(item, opts, priceOverride){
+  if (priceOverride != null) return priceOverride;
+  return item.price + opts.reduce((s,o)=>s+(o.d||0),0);
+}
+function lineKey(item, opts){
+  return item.id + '::' + opts.map(o=>o.label).join('|');
+}
+function addToCart(item, opts, priceOverride){
+  const key = lineKey(item, opts);
+  const existing = CART.find(l => l.key === key);
+  if (existing) existing.qty++;
+  else CART.push({ key, item, opts, qty:1, unitPrice: lineUnitPrice(item, opts, priceOverride) });
+  renderCart();
+  showToast(`${item.name} agregado`);
+}
+function removeLine(key){
+  CART = CART.filter(l => l.key !== key);
+  renderCart();
+}
+function changeQty(key, delta){
+  const l = CART.find(x => x.key === key);
+  if (!l) return;
+  l.qty = Math.max(0, l.qty + delta);
+  if (l.qty === 0) CART = CART.filter(x => x.key !== key);
+  renderCart();
+}
+function cartSum(){ return CART.reduce((s,l)=>s+l.unitPrice*l.qty, 0); }
+function cartItems(){ return CART.reduce((s,l)=>s+l.qty, 0); }
+
+function renderCart(){
+  syncCardCounts();
+  cartCount.textContent = cartItems();
+  const sum = cartSum();
+  cartSubtotal.textContent = fmt(sum);
+  cartTotal.textContent = fmt(sum);
+  checkoutBtn.disabled = CART.length === 0;
+  updateCartFab();
+
+  if (CART.length === 0){
+    drawerItems.innerHTML = '';
+    drawerItems.appendChild(drawerEmpty);
+    upsellEl.style.display = 'none';
+    return;
+  }
+
+  drawerItems.innerHTML = CART.map(l => `
+    <div class="line-item">
+      ${imgHTML(l.item.img, l.item.name)}
+      <div>
+        <div class="name">${l.item.name}</div>
+        ${l.opts.length ? `<div class="opt">${l.opts.map(o=>o.label).join(' · ')}</div>` : ''}
+        <div class="qty">
+          <button data-act="dec" data-key="${l.key}" aria-label="Quitar uno">−</button>
+          <span class="n">${l.qty}</span>
+          <button data-act="inc" data-key="${l.key}" aria-label="Agregar uno">+</button>
+        </div>
+      </div>
+      <div style="text-align:right">
+        <div class="price">${fmt(l.unitPrice * l.qty)}</div>
+        <button class="rm" data-act="rm" data-key="${l.key}">Quitar</button>
+      </div>
+    </div>
+  `).join('');
+
+  drawerItems.querySelectorAll('[data-act]').forEach(b => {
+    b.addEventListener('click', () => {
+      const key = b.dataset.key;
+      if (b.dataset.act === 'inc') changeQty(key, +1);
+      else if (b.dataset.act === 'dec') changeQty(key, -1);
+      else if (b.dataset.act === 'rm') removeLine(key);
+    });
+  });
+
+  // upsell logic
+  const cats = new Set(CART.map(l => l.item.cat));
+  let suggest = [];
+  if ((cats.has('salado') || cats.has('ensaladas')) && !cats.has('bebidas')){
+    suggest = MENU.filter(m => m.cat === 'bebidas').slice(0,4);
+  } else if ((cats.has('salado') || cats.has('ensaladas')) && !cats.has('pasteleria')){
+    suggest = MENU.filter(m => m.cat === 'pasteleria').slice(0,4);
+  } else if (cats.has('pasteleria') && !cats.has('cafes')){
+    suggest = MENU.filter(m => m.cat === 'cafes').slice(0,4);
+  } else if (!cats.has('pasteleria')){
+    suggest = ['p-brownie','p-alfajor','p-cookie-trad','p-medialuna'].map(id => MENU.find(m=>m.id===id)).filter(Boolean);
+  }
+  if (suggest.length){
+    upsellEl.style.display = 'block';
+    upsellRow.innerHTML = suggest.map(s => `
+      <button class="upsell__chip" data-id="${s.id}">
+        <span>${s.name}</span><span class="p">${fmt(s.price)}</span>
+      </button>
+    `).join('');
+    upsellRow.querySelectorAll('.upsell__chip').forEach(c => {
+      c.addEventListener('click', () => {
+        const item = MENU.find(x => x.id === c.dataset.id);
+        if (item.options) { closeDrawer(); openOptionsModal(item); }
+        else addToCart(item, []);
+      });
+    });
+  } else {
+    upsellEl.style.display = 'none';
+  }
+}
+
+function openDrawer(){ drawer.classList.add('open'); drawerScrim.classList.add('open'); document.body.style.overflow='hidden'; }
+function closeDrawer(){ drawer.classList.remove('open'); drawerScrim.classList.remove('open'); document.body.style.overflow=''; }
+document.getElementById('open-cart').addEventListener('click', openDrawer);
+document.getElementById('close-cart').addEventListener('click', closeDrawer);
+drawerScrim.addEventListener('click', closeDrawer);
+
+/* ──────────── CART FAB · rAF-animated ──────────── */
+const cartFab = document.getElementById('cart-fab');
+const cartFabCount = document.getElementById('cart-fab-count');
+const cartFabTotal = document.getElementById('cart-fab-total');
+const cartFabThumbs = document.getElementById('cart-fab-thumbs');
+let lastCartCount = 0;
+let fabAnimToken = 0;
+function fabAnimate(toIn, bumpAmount){
+  const token = ++fabAnimToken;
+  const duration = 520;
+  const t0 = performance.now();
+  const startOpacity = parseFloat(cartFab.style.opacity) || 0;
+  const startY = parseFloat(cartFab.dataset.y || (toIn ? 120 : 0));
+  const targetY = toIn ? 0 : 120;
+  const targetOp = toIn ? 1 : 0;
+  function tick(now){
+    if (token !== fabAnimToken) return;
+    const t = Math.min(1, (now - t0) / duration);
+    const k = 1 - Math.pow(1 - t, 3);
+    const y = startY + (targetY - startY) * k;
+    const op = startOpacity + (targetOp - startOpacity) * k;
+    let scale = (toIn ? 0.92 : 1) + (toIn ? 0.08 : -0.08) * k;
+    // little bounce/bump if requested
+    if (bumpAmount && toIn){
+      const bumpT = Math.sin(t * Math.PI);
+      scale += bumpAmount * bumpT * 0.06;
+    }
+    cartFab.style.opacity = op.toFixed(3);
+    cartFab.style.transform = `translateY(${y.toFixed(1)}px) scale(${scale.toFixed(3)})`;
+    cartFab.dataset.y = y;
+    if (t < 1) requestAnimationFrame(tick);
+    else if (!toIn) cartFab.style.display = 'none';
+  }
+  if (toIn) cartFab.style.display = 'flex';
+  requestAnimationFrame(tick);
+}
+function updateCartFab(){
+  if (!cartFab) return;
+  const n = cartItems();
+  const total = cartSum();
+  cartFabCount.textContent = n;
+  cartFabTotal.textContent = fmt(total);
+  const seen = new Set();
+  const lines = CART.filter(l => { if (seen.has(l.item.id)) return false; seen.add(l.item.id); return true; }).slice(0,3);
+  cartFabThumbs.innerHTML = lines.map(l => `<span class="thumb" style="background-image:url('${l.item.img}')"></span>`).join('');
+  if (n > 0 && lastCartCount === 0){
+    fabAnimate(true, 1);
+  } else if (n === 0 && lastCartCount > 0){
+    fabAnimate(false, 0);
+  } else if (n > lastCartCount){
+    // bump on add
+    fabAnimate(true, 1);
+  }
+  lastCartCount = n;
+}
+cartFab.addEventListener('click', openDrawer);
+// hover lift via JS (CSS transitions are pinned for this user)
+cartFab.addEventListener('pointerenter', () => {
+  const curY = parseFloat(cartFab.dataset.y || 0);
+  cartFab.style.transform = `translateY(${(curY - 4).toFixed(1)}px) scale(1.03)`;
+});
+cartFab.addEventListener('pointerleave', () => {
+  cartFab.style.transform = `translateY(0px) scale(1)`;
+});
+updateCartFab();
+
+/* ──────────── WHATSAPP CHECKOUT ──────────── */
+checkoutBtn.addEventListener('click', () => {
+  if (CART.length === 0) return;
+  const lines = CART.map(l => {
+    const opts = l.opts.length ? ` (${l.opts.map(o=>o.label).join(', ')})` : '';
+    return `• ${l.qty}× ${l.item.name}${opts} — ${fmt(l.unitPrice * l.qty)}`;
+  }).join('\n');
+  const total = fmt(cartSum());
+  const text = `Hola Las Feliipas! 👋\nQuiero hacer este pedido:\n\n${lines}\n\nTotal: ${total}\n\nLo paso a retirar por el local. ¡Gracias!`;
+  const url = `https://wa.me/${PHONE}?text=${encodeURIComponent(text)}`;
+  window.open(url, '_blank');
+});
+
+/* ──────────── MINI SLIDESHOWS (Nosotros) ──────────── */
+(function(){
+  const root = document.getElementById('minis');
+  if (!root) return;
+  root.innerHTML = MINIS.map((m, mi) => `
+    <div class="mini">
+      <div class="mini__media" data-mi="${mi}">
+        ${m.imgs.map((src, i) => `<div class="slide ${i===0?'active':''}">${imgHTML(src, m.label)}</div>`).join('')}
+        <div class="ticker">${m.imgs.map((_, i) => `<span class="${i===0?'active':''}"></span>`).join('')}</div>
+      </div>
+      <div>
+        <div class="mini__head"><h4>${m.label}</h4><span class="n">${m.n}</span></div>
+        <div class="mini__sub">${m.sub}</div>
+      </div>
+    </div>
+  `).join('');
+  // auto-rotate all minis in sync
+  const miniMedias = root.querySelectorAll('.mini__media');
+  const miniStates = Array.from(miniMedias).map(media => ({
+    slides: media.querySelectorAll('.slide'),
+    ticks: media.querySelectorAll('.ticker span'),
+    i: 0
+  })).filter(s => s.slides.length >= 2);
+
+  if (miniStates.length) {
+    setInterval(() => {
+      miniStates.forEach(state => {
+        state.i = (state.i + 1) % state.slides.length;
+        state.slides.forEach((s, k) => s.classList.toggle('active', k === state.i));
+        state.ticks.forEach((t, k) => t.classList.toggle('active', k === state.i));
+      });
+    }, 3600);
+  }
+})();
+
+/* ──────────── VELOCITY GALLERY — 3D horizontal carousel ──────────── */
+(function initVelGallery(){
+  const track = document.getElementById('vg-track');
+  if (!track) return;
+
+  const CARDS = [
+    {cat:'Tartas',     name:'Caprese',         img:'img/salado/tarta-caprese.jpeg'},
+    {cat:'Pastelería', name:'Tiramisú',        img:'img/pasteleria/tiramisu.jpeg'},
+    {cat:'Café',       name:'Espresso',        img:'img/cafe/cafe-sin-tx.jpg'},
+    {cat:'Sandwiches', name:'Milanesa',        img:'img/salado/sandwich-milanesa-completo.png'},
+    {cat:'Pastelería', name:'Rol de canela',   img:'img/pasteleria/rol-de-canela.jpeg'},
+    {cat:'Tartas',     name:'Calabaza',        img:'img/salado/tarta-de-calabaza.png'},
+    {cat:'Pastelería', name:'Brownie',         img:'img/pasteleria/brownie.jpeg'},
+    {cat:'Empanadas',  name:'Carne',           img:'img/salado/emp-carne.jpeg'},
+    {cat:'Pastelería', name:'Medialunas',      img:'img/pasteleria/medialunas.png'},
+    {cat:'Pizzas',     name:'Muzzarella',      img:'img/salado/pizza-sin-tx.jpeg'},
+    {cat:'Pastelería', name:'Torta de manzana',img:'img/pasteleria/torta-manzana.jpeg'},
+    {cat:'Café',       name:'Cold brew',       img:'img/cafe/cafe-frio-sin-tx.png'},
+    {cat:'Tartas',     name:'Verdura',         img:'img/salado/tarta-de-verdura.jpeg'},
+    {cat:'Pastelería', name:'Cookie pistacho', img:'img/pasteleria/cookie-pistacho.png'},
+    {cat:'Empanadas',  name:'Pollo',           img:'img/salado/emp-pollo.jpeg'},
+    {cat:'Pastelería', name:'Flan',            img:'img/pasteleria/flan.jpeg'},
+    {cat:'Sandwiches', name:'Jamón y queso',   img:'img/salado/sandw-jyq.jpeg'},
+    {cat:'Pastelería', name:'Pastafrola',      img:'img/pasteleria/pastafrola.png'},
+    {cat:'Tartas',     name:'Zapallito',       img:'img/salado/tarta-zapallito.jpeg'},
+    {cat:'Pastelería', name:'Chipa',           img:'img/pasteleria/chipa.jpeg'},
+    {cat:'Empanadas',  name:'Verdura',         img:'img/salado/emp-verdura.jpeg'},
+    {cat:'Pastelería', name:'Torta matera',    img:'img/pasteleria/torta-matera.jpeg'},
+    {cat:'Pizzas',     name:'Cebolla',         img:'img/salado/pizza-ceb-sin-tx.jpeg'},
+    {cat:'Pastelería', name:'Alfajor de maíz', img:'img/pasteleria/alfaj-maiz.jpeg'},
+    {cat:'Café',       name:'Felipa especial', img:'img/nosotros/cafe-felipa-pro-sin-tx.png'},
+    {cat:'Sandwiches', name:'Completo',        img:'img/salado/sandw-completo.jpeg'},
+    {cat:'Pastelería', name:'Cuadradito limón',img:'img/pasteleria/cuadradito-limon.jpeg'},
+    {cat:'Tartas',     name:'Pollo',           img:'img/salado/tarta-pollo.jpeg'},
+    {cat:'Pastelería', name:'Budín',           img:'img/pasteleria/budin.png'},
+    {cat:'Empanadas',  name:'Jamón y queso',   img:'img/salado/emp-jyq.jpeg'},
+    {cat:'Pastelería', name:'Cookie tradicional',img:'img/pasteleria/cookie-tradicional.jpeg'},
+    {cat:'Tartas',     name:'J&Q y cebolla',   img:'img/salado/tarta-jyq-y-ceb.jpeg'},
+    {cat:'Sandwiches', name:'Mila J&Q',        img:'img/salado/sandw-mil-jyq.png'},
+    {cat:'Pastelería', name:'Criollitos',      img:'img/pasteleria/criollitos.png'},
+    {cat:'Salado',     name:'Ensalada',        img:'img/salado/ensalada.jpeg'},
+    {cat:'Pastelería', name:'Medialuna J&Q',   img:'img/pasteleria/medialuna-jyq.png'},
+    {cat:'Tartas',     name:'Jamón y queso',   img:'img/salado/tarta-jyq.jpeg'},
+  ];
+
+  const esc = (s) => String(s).replace(/"/g,'&quot;').replace(/</g,'&lt;');
+  // c = sujeto ya centrado | l = sujeto muy a la derecha (anchor 100%)
+  const CENTERED = new Set(['Tiramisú','Budín']);
+  // claves cat|name para sujetos extremos
+  const EXTREME_LEFT = new Set(['Tartas|Caprese','Café|Espresso','Sandwiches|Jamón y queso']);
+  function posFlag(c){
+    const key = `${c.cat}|${c.name}`;
+    if (EXTREME_LEFT.has(key)) return 'l';
+    if (c.cat === 'Sandwiches' || CENTERED.has(c.name)) return 'c';
+    return '';
+  }
+  function cardHTML(c){
+    const flag = posFlag(c);
+    const pos = flag ? ` data-pos="${flag}"` : '';
+    return `<div class="vg-card"${pos} data-cat="${esc(c.cat)}" data-label="${esc(c.name)}">
+      <img src="${c.img}" alt="${esc(c.name)}" loading="lazy" draggable="false" />
+      <div class="vg-label">
+        <span class="vg-label-cat">${esc(c.cat)}</span>
+        <span class="vg-label-name">${esc(c.name)}</span>
+      </div>
+    </div>`;
+  }
+
+  // Render originals + clones (seamless infinite loop)
+  track.innerHTML = [...CARDS, ...CARDS].map(cardHTML).join('');
+  const cards = Array.from(track.children);
+
+  const GAP = 18;
+  function cardW(){ return window.matchMedia('(max-width:780px)').matches ? 200 : 260; }
+  let cw = cardW() + GAP;
+  let half = 0;
+  let firstMeasure = true;
+  function measure(){
+    cw = cardW() + GAP;
+    half = track.scrollWidth / 2;
+    if (firstMeasure){
+      x = -half / 2;
+      track.style.transform = `translate3d(${x}px,0,0)`;
+      firstMeasure = false;
+    }
+  }
+  // wait one frame so layout is settled
+  requestAnimationFrame(measure);
+  window.addEventListener('resize', measure, { passive:true });
+
+  const BASE_SPEED = 1.88;
+  let x = 0;
+  // per-card lerp state for fluid tilts
+  const tiltState = []; // {ty, tx, sc}
+  let rawScrollVel = 0;
+  let smoothVel = 0;
+
+  // Scroll velocity feed
+  let lastScrollY = window.scrollY;
+  window.addEventListener('scroll', () => {
+    const dy = window.scrollY - lastScrollY;
+    lastScrollY = window.scrollY;
+    rawScrollVel += dy * 0.9;
+  }, { passive:true });
+
+  // ─── Drag (pointer + touch) with momentum
+  let dragging = false;
+  let dragStartX = 0;
+  let dragStartTrackX = 0;
+  let lastPointerX = 0;
+  let dragVel = 0;
+  let momentum = 0;
+
+  track.addEventListener('pointerdown', (e) => {
+    dragging = true;
+    track.classList.add('dragging');
+    try { track.setPointerCapture(e.pointerId); } catch(_){}
+    dragStartX = e.clientX;
+    dragStartTrackX = x;
+    lastPointerX = e.clientX;
+    dragVel = 0;
+  });
+  track.addEventListener('pointermove', (e) => {
+    if (!dragging) return;
+    dragVel = e.clientX - lastPointerX;
+    lastPointerX = e.clientX;
+    x = dragStartTrackX + (e.clientX - dragStartX);
+  });
+  function endDrag(e){
+    if (!dragging) return;
+    dragging = false;
+    track.classList.remove('dragging');
+    try { track.releasePointerCapture(e.pointerId); } catch(_){}
+    momentum = dragVel * 0.85;
+  }
+  track.addEventListener('pointerup', endDrag);
+  track.addEventListener('pointercancel', endDrag);
+  track.addEventListener('pointerleave', endDrag);
+
+  // ─── Hover + scramble text
+  const SCRAMBLE_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚabcdefghijklmnopqrstuvwxyz';
+  function scramble(el, target){
+    const duration = 680;
+    const start = performance.now();
+    function tick(now){
+      const t = Math.min(1, (now - start) / duration);
+      const reveal = Math.floor(t * target.length);
+      let out = '';
+      for (let i = 0; i < target.length; i++){
+        const ch = target[i];
+        if (i < reveal) out += ch;
+        else if (ch === ' ') out += ' ';
+        else out += SCRAMBLE_CHARS[Math.floor(Math.random() * SCRAMBLE_CHARS.length)];
+      }
+      el.textContent = out;
+      if (t < 1) requestAnimationFrame(tick);
+      else el.textContent = target;
+    }
+    requestAnimationFrame(tick);
+  }
+  cards.forEach(card => {
+    card.addEventListener('pointerenter', () => {
+      if (dragging) return;
+      card.dataset.hovered = '1';
+      const nameEl = card.querySelector('.vg-label-name');
+      if (nameEl) scramble(nameEl, card.dataset.label);
+    });
+    card.addEventListener('pointerleave', () => {
+      card.dataset.hovered = '0';
+    });
+    // prevent native image drag
+    card.querySelector('img')?.addEventListener('dragstart', (e) => e.preventDefault());
+  });
+
+  // ─── Velocity bar
+  const velBar = document.getElementById('vg-vel-bar');
+
+  // ─── Main rAF loop
+  let lastFrame = performance.now();
+  function frame(now){
+    lastFrame = now;
+
+    // Spring damping for scroll velocity
+    smoothVel += (rawScrollVel - smoothVel) * 0.10;
+    smoothVel *= 0.875;
+    rawScrollVel *= 0.85;
+
+    // Apply momentum from drag
+    if (Math.abs(momentum) > 0.05){
+      x += momentum;
+      momentum *= 0.93;
+    }
+
+    // Auto-scroll left-to-right: track moves right (x increases),
+    // so cards appear to drift from left edge toward right.
+    if (!dragging){
+      x += BASE_SPEED + smoothVel * 0.28;
+    }
+
+    // Seamless wrap (both directions)
+    if (half > 0){
+      while (x <= -half) x += half;
+      while (x > 0) x -= half;
+    }
+
+    track.style.transform = `translate3d(${x}px,0,0)`;
+
+    // Per-card tilt + wave (lerp-smoothed for fluidity)
+    const vw = window.innerWidth;
+    const centerX = vw / 2;
+    const globalTilt = Math.max(-22, Math.min(22, -smoothVel * 0.45));
+    const LERP = 0.18;
+    for (let i = 0; i < cards.length; i++){
+      const card = cards[i];
+      const st = tiltState[i] || (tiltState[i] = { ty:0, tx:0, sc:1 });
+      if (card.dataset.hovered === '1'){
+        // settle smoothly toward hover state
+        st.ty += (0 - st.ty) * LERP;
+        st.tx += (0 - st.tx) * LERP;
+        st.sc += (1.04 - st.sc) * LERP;
+        card.style.transform = `translateZ(56px) rotateY(${st.ty.toFixed(2)}deg) scale(${st.sc.toFixed(3)})`;
+        continue;
+      }
+      const screenCx = x + i * cw + cw/2;
+      const dist = (screenCx - centerX) / vw;
+      const dClamp = Math.max(-1, Math.min(1, dist));
+      const wave = dClamp * 16;
+      const targetY = Math.max(-28, Math.min(28, globalTilt + wave));
+      const targetX = Math.min(5, Math.abs(smoothVel) * 0.05);
+      const targetS = 1 + Math.min(0.015, Math.abs(smoothVel) * 0.0012);
+      st.ty += (targetY - st.ty) * LERP;
+      st.tx += (targetX - st.tx) * LERP;
+      st.sc += (targetS - st.sc) * LERP;
+      card.style.transform = `rotateY(${st.ty.toFixed(2)}deg) rotateX(${st.tx.toFixed(2)}deg) scale(${st.sc.toFixed(3)})`;
+    }
+
+    // Velocity bar
+    if (velBar){
+      const norm = Math.min(1, Math.abs(smoothVel) / 30);
+      velBar.style.transform = `scaleX(${norm})`;
+    }
+
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+
+/* ──────────── NAV ON SCROLL ──────────── */
+(function(){
+  const nav = document.getElementById('nav');
+  let last = 0;
+  function tick(){
+    const y = window.scrollY;
+    nav.classList.toggle('scrolled', y > 8);
+    last = y;
+  }
+  window.addEventListener('scroll', tick, { passive:true });
+  tick();
+})();
+
+/* ──────────── REVEAL ON SCROLL · rAF-driven (bypasses CSS reduce-motion) ──────────── */
+const easeOutCubic = t => 1 - Math.pow(1 - t, 3);
+function rafReveal(el, opts){
+  opts = opts || {};
+  const duration = opts.duration || 950;
+  const fromY    = opts.fromY != null ? opts.fromY : 28;
+  const fromBlur = opts.fromBlur || 0;
+  const fromScale= opts.fromScale != null ? opts.fromScale : 1;
+  const delay    = opts.delay || 0;
+  const t0 = performance.now() + delay;
+  el.style.willChange = 'opacity,transform,filter';
+  function tick(now){
+    if (now < t0){ requestAnimationFrame(tick); return; }
+    const t = Math.min(1, (now - t0) / duration);
+    const k = easeOutCubic(t);
+    const y = fromY * (1 - k);
+    const s = fromScale + (1 - fromScale) * k;
+    el.style.opacity = k.toFixed(3);
+    el.style.transform = `translateY(${y.toFixed(2)}px) scale(${s.toFixed(3)})`;
+    if (fromBlur) el.style.filter = `blur(${(fromBlur * (1 - k)).toFixed(2)}px)`;
+    if (t < 1) requestAnimationFrame(tick);
+    else { el.style.willChange = 'auto'; el.classList.add('in'); }
+  }
+  requestAnimationFrame(tick);
+}
+
+(function(){
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const target = e.target;
+      if (target.classList.contains('reveal-stagger')){
+        Array.from(target.children).forEach((child, i) => rafReveal(child, { delay: i * 90, duration: 900 }));
+      } else {
+        rafReveal(target);
+      }
+      io.unobserve(target);
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+  document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => io.observe(el));
+})();
+
+
+/* ──────────── WINDOW EFFECT MOBILE FALLBACK ──────────── */
+(function(){
+  const divider = document.querySelector('.divider');
+  const bg = divider?.querySelector('.bg');
+  if (!divider || !bg) return;
+  let rafId = null;
+  let inView = false;
+  function apply(){
+    if (window.innerWidth > 780) { bg.style.transform = ''; return; }
+    const rect = divider.getBoundingClientRect();
+    bg.style.transform = 'translate3d(0,' + (-rect.top) + 'px,0)';
+  }
+  function tick(){
+    apply();
+    if (inView) rafId = requestAnimationFrame(tick);
+    else rafId = null;
+  }
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      inView = e.isIntersecting;
+      if (inView && !rafId) rafId = requestAnimationFrame(tick);
+      if (!inView) apply();
+    });
+  }, { rootMargin: '100px' });
+  io.observe(divider);
+  window.addEventListener('resize', apply, { passive:true });
+  window.addEventListener('scroll', apply, { passive:true });
+  apply();
+})();
+
+/* ──────────── TOAST ──────────── */
+let toastT;
+function escapeHTML(s){ return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function showToast(msg){
+  const t = document.getElementById('toast');
+  const m = String(msg).match(/^(.*?)\s+agregado$/);
+  const html = m ? `<em>${escapeHTML(m[1])}</em> sumado al pedido` : escapeHTML(msg);
+  document.getElementById('toast-text').innerHTML = html;
+  t.classList.add('show');
+  clearTimeout(toastT);
+  toastT = setTimeout(() => t.classList.remove('show'), 2200);
+}
+
+/* ──────────── ESC closes drawer + modal ──────────── */
+window.addEventListener('keydown', e => {
+  if (e.key === 'Escape'){
+    if (modalScrim.classList.contains('open')) closeOptionsModal();
+    else if (drawer.classList.contains('open')) closeDrawer();
+  }
+});
+
+/* ──────────── INIT ──────────── */
+renderTabs();
+renderGrid();
+renderCart();
+</script>
+
+<!-- ═══════════════════════════════ LENIS · CINEMATIC SCROLL ═══════════════════════════════ -->
+<script type="module">
+import Lenis from 'https://unpkg.com/lenis@1.3.23/dist/lenis.mjs';
+
+const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ──────────── LENIS INIT ──────────── */
+const lenis = new Lenis({
+  duration: 1.15,
+  easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // expo-out
+  smoothWheel: !prefersReduced,
+  wheelMultiplier: 1,
+  touchMultiplier: 1.2,
+  lerp: 0.09,
+});
+
+// Expose for debugging / other modules
+window.__lenis = lenis;
+
+function raf(time){
+  lenis.raf(time);
+  requestAnimationFrame(raf);
+}
+requestAnimationFrame(raf);
+
+/* ──────────── TOPBAR MARQUEE (JS-driven, bypasses prefers-reduced-motion) ──────────── */
+(() => {
+  const reel = document.querySelector('.topbar__reel');
+  if (!reel) return;
+  const speed = window.matchMedia('(max-width:780px)').matches ? 60 : 40; // px/sec
+  let half = reel.scrollWidth / 2;
+  let offset = -half; // start at -50% so loop is seamless
+  let last = performance.now();
+  let paused = false;
+  reel.addEventListener('mouseenter', () => { paused = true; });
+  reel.addEventListener('mouseleave', () => { paused = false; });
+  window.addEventListener('resize', () => { half = reel.scrollWidth / 2; }, { passive:true });
+  function tick(now){
+    const dt = (now - last) / 1000;
+    last = now;
+    if (!paused){
+      offset += speed * dt;
+      if (offset >= 0) offset -= half; // seamless wrap
+      reel.style.transform = `translate3d(${offset}px,0,0)`;
+    }
+    requestAnimationFrame(tick);
+  }
+  reel.style.transform = `translate3d(${offset}px,0,0)`;
+  requestAnimationFrame(tick);
+})();
+
+/* ──────────── SMOOTH ANCHOR LINKS ──────────── */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', (e) => {
+    const id = a.getAttribute('href');
+    if (!id || id === '#' || id.length < 2) return;
+    const target = document.querySelector(id);
+    if (!target) return;
+    e.preventDefault();
+    lenis.scrollTo(target, { offset: -80, duration: 1.4 });
+  });
+});
+
+/* ──────────── PARALLAX · synced with Lenis ──────────── */
+const parallaxEls = Array.from(document.querySelectorAll('[data-parallax]'));
+const parallaxState = parallaxEls.map(el => ({
+  el,
+  speed: parseFloat(el.dataset.parallax) || 0,
+}));
+
+let vh = window.innerHeight;
+window.addEventListener('resize', () => { vh = window.innerHeight; }, { passive:true });
+
+function updateParallax(scroll){
+  if (prefersReduced) return;
+  for (const p of parallaxState){
+    const rect = p.el.getBoundingClientRect();
+    // Only animate when near viewport
+    if (rect.bottom < -200 || rect.top > vh + 200) continue;
+    const center = rect.top + rect.height / 2;
+    const offset = (center - vh / 2) * p.speed;
+    p.el.style.transform = `translate3d(0, ${offset.toFixed(2)}px, 0)`;
+  }
+}
+
+/* ──────────── BLUR REVEAL OBSERVER · rAF-driven ──────────── */
+const blurIO = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    const target = e.target;
+    if (target.classList.contains('reveal-blur-stagger')){
+      Array.from(target.children).forEach((child, i) => rafReveal(child, { duration: 1150, fromY: 28, fromBlur: 12, fromScale: 1, delay: 50 + i * 110 }));
+    } else {
+      rafReveal(target, { duration: 1300, fromY: 36, fromBlur: 14, fromScale: 0.985 });
+    }
+    blurIO.unobserve(target);
+  });
+}, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+document.querySelectorAll('.reveal-blur, .reveal-blur-stagger').forEach(el => blurIO.observe(el));
+
+/* ──────────── SCROLL-DRIVEN HOOK ──────────── */
+lenis.on('scroll', ({ scroll }) => {
+  updateParallax(scroll);
+});
+
+// Initial paint
+updateParallax(window.scrollY);
+
+/* ──────────── HERO FADE ON SCROLL ──────────── */
+const hero = document.querySelector('.hero');
+const heroContent = document.querySelector('.hero__content');
+const heroScroll = document.querySelector('.hero__scroll');
+if (hero && heroContent && !prefersReduced){
+  lenis.on('scroll', ({ scroll }) => {
+    const h = hero.offsetHeight;
+    const p = Math.min(1, Math.max(0, scroll / h));
+    const eased = p * p;
+    heroContent.style.opacity = String(1 - eased * 1.1);
+    if (heroScroll) heroScroll.style.opacity = String(Math.max(0, 1 - p * 2.4));
+  });
+}
+</script>
+
+</body>
+</html>

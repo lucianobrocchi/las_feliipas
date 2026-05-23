@@ -1161,20 +1161,20 @@ const MENU = [
   { id:'s-tarta-verdura',   cat:'salado', name:'Tarta de verdura',           desc:'Acelga, cebolla, huevo y nuez moscada.', price:5500, img:'img/salado/tarta-de-verdura.jpeg' },
 
   // SALADO · Pizzas
-  { id:'s-pizza-muza', cat:'salado', name:'Pizza muzarella',  desc:'Individual, salsa de tomate casera, muza fundida.', price:5800, img:'img/salado/pizza.jpeg' },
-  { id:'s-pizza-ceb',  cat:'salado', name:'Pizza de cebolla', desc:'Fugazza individual, cebolla, orégano.',           price:5800, img:'img/salado/pizza-ceb.jpeg' },
+  { id:'s-pizza-muza', cat:'salado', name:'Pizza muzarella',  desc:'Individual, salsa de tomate casera, muza fundida.', price:5500, img:'img/salado/pizza.jpeg' },
+  { id:'s-pizza-ceb',  cat:'salado', name:'Pizza de cebolla', desc:'Fugazza individual, cebolla, orégano.',           price:6000, img:'img/salado/pizza-ceb.jpeg' },
 
   // SALADO · Empanadas $1.800 c/u
-  { id:'s-emp-carne',   cat:'salado', name:'Empanada de carne',         desc:'Suave, cortada a cuchillo, con huevo y aceituna.', price:1800, img:'img/salado/emp-carne.jpeg',   options:[{group:'Unidades',required:true,multi:false,items:[{n:'1 unidad',d:0},{n:'½ docena',d:9000},{n:'1 docena',d:18900}]}] },
-  { id:'s-emp-verdura', cat:'salado', name:'Empanada de verdura',       desc:'Acelga, salsa blanca, nuez moscada.',              price:1800, img:'img/salado/emp-verdura.jpeg', options:[{group:'Unidades',required:true,multi:false,items:[{n:'1 unidad',d:0},{n:'½ docena',d:9000},{n:'1 docena',d:18900}]}] },
-  { id:'s-emp-jyq',     cat:'salado', name:'Empanada de jamón y queso', desc:'Jamón cocido y muzarella.',                         price:1800, img:'img/salado/emp-jyq.jpeg',     options:[{group:'Unidades',required:true,multi:false,items:[{n:'1 unidad',d:0},{n:'½ docena',d:9000},{n:'1 docena',d:18900}]}] },
-  { id:'s-emp-pollo',   cat:'salado', name:'Empanada de pollo',         desc:'Pollo y verdeo, jugosa.',                          price:1800, img:'img/salado/emp-pollo.jpeg',   options:[{group:'Unidades',required:true,multi:false,items:[{n:'1 unidad',d:0},{n:'½ docena',d:9000},{n:'1 docena',d:18900}]}] },
+  { id:'s-emp-carne',   cat:'salado', name:'Empanada de carne',         desc:'Suave, cortada a cuchillo, con huevo y aceituna.', price:2000, img:'img/salado/emp-carne.jpeg',   options:[{group:'Unidades',required:true,multi:false,items:[{n:'1 unidad',d:0},{n:'½ docena',d:9000},{n:'1 docena',d:18900}]}] },
+  { id:'s-emp-verdura', cat:'salado', name:'Empanada de verdura',       desc:'Acelga, salsa blanca, nuez moscada.',              price:2000, img:'img/salado/emp-verdura.jpeg', options:[{group:'Unidades',required:true,multi:false,items:[{n:'1 unidad',d:0},{n:'½ docena',d:9000},{n:'1 docena',d:18900}]}] },
+  { id:'s-emp-jyq',     cat:'salado', name:'Empanada de jamón y queso', desc:'Jamón cocido y muzarella.',                         price:2000, img:'img/salado/emp-jyq.jpeg',     options:[{group:'Unidades',required:true,multi:false,items:[{n:'1 unidad',d:0},{n:'½ docena',d:9000},{n:'1 docena',d:18900}]}] },
+  { id:'s-emp-pollo',   cat:'salado', name:'Empanada de pollo',         desc:'Pollo y verdeo, jugosa.',                          price:2000, img:'img/salado/emp-pollo.jpeg',   options:[{group:'Unidades',required:true,multi:false,items:[{n:'1 unidad',d:0},{n:'½ docena',d:9000},{n:'1 docena',d:18900}]}] },
 
   // SALADO · Sandwiches
-  { id:'sw-jyq',          cat:'salado', name:'Sandwich jamón y queso',           desc:'Jamón cocido y muzarella.',                                price:3000, img:'img/salado/sandw-jyq.jpeg',                  options:[{group:'Pan',required:true,multi:false,items:[{n:'Árabe',d:0},{n:'Sacramento',d:0},{n:'Baguette',d:0},{n:'Salvado',d:0}]}] },
+  { id:'sw-jyq',          cat:'salado', name:'Sandwich jamón y queso',           desc:'Jamón cocido y muzarella.',                                price:3000, img:'img/salado/sandw-jyq.jpeg',                  options:[{group:'Pan',required:true,multi:false,items:[{n:'Salvado',d:0},{n:'Árabe',d:1000},{n:'Baguette',d:1000},{n:'Sacramento',d:2000}]}] },
   { id:'sw-completo',     cat:'salado', name:'Sandwich completo',                 desc:'Jamón, queso, tomate, lechuga, huevo y mayonesa.',         price:3500, img:'img/salado/sandw-completo.jpeg',             options:[{group:'Pan',required:true,multi:false,items:[{n:'Árabe',d:0},{n:'Sacramento',d:0},{n:'Baguette',d:0},{n:'Salvado',d:0}]}] },
   { id:'sw-mil-solo',     cat:'salado', name:'Sandwich de milanesa',              desc:'Milanesa recién hecha, lechuga y tomate.',                 price:6000, img:'img/salado/sandwich-milanesa-completo.png',  options:[{group:'Carne',required:true,multi:false,items:[{n:'Carne',d:0},{n:'Pollo',d:0}]},{group:'Pan',required:true,multi:false,items:[{n:'Árabe',d:0},{n:'Sacramento',d:0},{n:'Baguette',d:0},{n:'Salvado',d:0}]}] },
-  { id:'sw-mil-jyq',      cat:'salado', name:'Milanesa con jamón y queso',       desc:'Milanesa, jamón cocido y queso fundido.',                   price:6500, img:'img/salado/sandw-mil-jyq.png',               options:[{group:'Carne',required:true,multi:false,items:[{n:'Carne',d:0},{n:'Pollo',d:0}]},{group:'Pan',required:true,multi:false,items:[{n:'Árabe',d:0},{n:'Sacramento',d:0},{n:'Baguette',d:0},{n:'Salvado',d:0}]}] },
+  { id:'sw-mil-jyq',      cat:'salado', name:'Milanesa con jamón y queso',       desc:'Milanesa, jamón cocido y queso fundido.',                   price:7000, img:'img/salado/sandw-mil-jyq.png',               options:[{group:'Carne',required:true,multi:false,items:[{n:'Carne',d:0},{n:'Pollo',d:0}]},{group:'Pan',required:true,multi:false,items:[{n:'Árabe',d:0},{n:'Sacramento',d:0},{n:'Baguette',d:0},{n:'Salvado',d:0}]}] },
   { id:'sw-mil-completo', cat:'salado', name:'Milanesa completa',                 desc:'Milanesa, jamón, queso, huevo, tomate y lechuga.',         price:7500, img:'img/salado/sandwich-milanesa-completo.png',  options:[{group:'Carne',required:true,multi:false,items:[{n:'Carne',d:0},{n:'Pollo',d:0}]},{group:'Pan',required:true,multi:false,items:[{n:'Árabe',d:0},{n:'Sacramento',d:0},{n:'Baguette',d:0},{n:'Salvado',d:0}]}] },
 
   // ENSALADAS
@@ -1184,21 +1184,21 @@ const MENU = [
   { id:'p-cookie-trad',     cat:'pasteleria', name:'Cookie tradicional',  desc:'Chips de chocolate, manteca y avena.',     price:2500, img:'img/pasteleria/cookie-tradicional.jpeg' },
   { id:'p-cookie-pistacho', cat:'pasteleria', name:'Cookie de pistacho',  desc:'Manteca, pistacho y chips. Crocante por fuera.', price:2800, img:'img/pasteleria/cookie-pistacho.png' },
   { id:'p-brownie',         cat:'pasteleria', name:'Brownie',             desc:'Húmedo, intenso, con nuez tostada.',       price:3000, img:'img/pasteleria/brownie.jpeg' },
-  { id:'p-alfajor',         cat:'pasteleria', name:'Alfajor de maicena',  desc:'Dulce de leche y coco. Receta de la abuela.', price:2500, img:'img/pasteleria/alfaj-maiz.jpeg', options:[{group:'Cantidad',required:true,multi:false,items:[{n:'¼ docena',d:0},{n:'½ docena',d:2200},{n:'1 docena',d:6400}]}] },
-  { id:'p-pastafrola',      cat:'pasteleria', name:'Pastafrola',          desc:'De membrillo, masa quebrada.',             price:2300, img:'img/pasteleria/pastafrola.png' },
-  { id:'p-limon',           cat:'pasteleria', name:'Cuadradito de limón', desc:'Masa sablée, lemon curd, merengue.',      price:2500, img:'img/pasteleria/cuadradito-limon.jpeg' },
+  { id:'p-alfajor',         cat:'pasteleria', name:'Alfajor de maicena',  desc:'Dulce de leche y coco. Receta de la abuela.', price:900, img:'img/pasteleria/alfaj-maiz.jpeg', options:[{group:'Cantidad',required:true,multi:false,items:[{n:'1 unidad',d:0},{n:'½ docena',d:4100},{n:'1 docena',d:8600}]}] },
+  { id:'p-pastafrola',      cat:'pasteleria', name:'Pastafrola',          desc:'De membrillo, masa quebrada.',             price:2400, img:'img/pasteleria/pastafrola.png' },
+  { id:'p-limon',           cat:'pasteleria', name:'Cuadradito de limón', desc:'Masa sablée, lemon curd, merengue.',      price:2400, img:'img/pasteleria/cuadradito-limon.jpeg' },
   { id:'p-cuadrad-manzana', cat:'pasteleria', name:'Cuadradito de manzana', desc:'Manzana, canela, masa quebrada.',         price:2500, img:'img/pasteleria/torta-manzana.jpeg' },
   { id:'p-budin',           cat:'pasteleria', name:'Budín casero',        desc:'Naranja, chocolate, chocolate con nuez o banana.',  price:6000, img:'img/pasteleria/budin.png',     options:[{group:'Sabor',required:true,multi:false,items:[{n:'Naranja',d:0},{n:'Chocolate',d:0},{n:'Chocolate con nuez',d:0},{n:'Banana',d:0}]}] },
-  { id:'p-tiramisu',        cat:'pasteleria', name:'Tiramisú',            desc:'Café, mascarpone, cacao. Porción individual.', price:4500, img:'img/pasteleria/tiramisu.jpeg' },
-  { id:'p-flan',            cat:'pasteleria', name:'Flan casero',         desc:'Con dulce de leche y crema, a elección.',  price:3500, img:'img/pasteleria/flan.jpeg',     options:[{group:'Acompañamiento',required:false,multi:true,items:[{n:'+ dulce de leche',d:400},{n:'+ crema',d:400}]}] },
+  { id:'p-tiramisu',        cat:'pasteleria', name:'Tiramisú',            desc:'Café, mascarpone, cacao. Porción individual.', price:5000, img:'img/pasteleria/tiramisu.jpeg' },
+  { id:'p-flan',            cat:'pasteleria', name:'Flan casero',         desc:'Con dulce de leche y crema, a elección.',  price:3000, img:'img/pasteleria/flan.jpeg',     options:[{group:'Acompañamiento',required:false,multi:true,items:[{n:'+ dulce de leche',d:400},{n:'+ crema',d:400}]}] },
   { id:'p-torta-matera',    cat:'pasteleria', name:'Torta matera',        desc:'Bizcocho con pasas, ideal con mate.',      price:3500, img:'img/pasteleria/torta-matera.jpeg' },
   { id:'p-rol-canela',      cat:'pasteleria', name:'Roll de canela',      desc:'Glaseado, canela y manteca, recién horneado.', price:3000, img:'img/pasteleria/rol-de-canela.jpeg' },
 
   // PASTELERÍA · Panadería
   { id:'p-chipa',          cat:'pasteleria', name:'Chipas',                       desc:'Calientes, queso y almidón de mandioca.',    price:2200, img:'img/pasteleria/chipa.jpeg',          options:[{group:'Cantidad',required:true,multi:false,items:[{n:'¼ kg',d:0},{n:'½ kg',d:2200},{n:'1 kg',d:6400}]}] },
   { id:'p-criollitos',     cat:'pasteleria', name:'Criollitos',                   desc:'Hojaldre con grasa, salados.',                 price:2400, img:'img/pasteleria/criollitos.png',     options:[{group:'Cantidad',required:true,multi:false,items:[{n:'¼ kg',d:0},{n:'½ kg',d:2400},{n:'1 kg',d:6800}]}] },
-  { id:'p-medialuna',      cat:'pasteleria', name:'Medialunas',                   desc:'De manteca, glaseadas. Recién horneadas.',     price:7200, img:'img/pasteleria/medialunas.png',     options:[{group:'Cantidad',required:true,multi:false,items:[{n:'½ docena',d:0},{n:'1 docena',d:6800}]}] },
-  { id:'p-medialuna-jyq',  cat:'pasteleria', name:'Medialuna con jamón y queso', desc:'Tibia, abierta y rellena. Por unidad.',        price:2800, img:'img/pasteleria/medialuna-jyq.png' },
+  { id:'p-medialuna',      cat:'pasteleria', name:'Medialunas',                   desc:'De manteca, glaseadas. Recién horneadas.',     price:900, img:'img/pasteleria/medialunas.png',     options:[{group:'Cantidad',required:true,multi:false,items:[{n:'1 unidad',d:0},{n:'½ docena',d:4100},{n:'1 docena',d:9100}]}] },
+  { id:'p-medialuna-jyq',  cat:'pasteleria', name:'Medialuna con jamón y queso', desc:'Tibia, abierta y rellena. Por unidad.',        price:1400, img:'img/pasteleria/medialuna-jyq.png' },
 
   // CAFÉS · 100% arábico
   { id:'c-espresso',  cat:'cafes', name:'Café espresso', desc:'100% arábico, elegí la variedad de la casa.', price:3500, img:'img/cafe/cafe-sin-tx.jpg', options:[{group:'Variedad',required:true,multi:false,items:[{n:'Rotondo',d:0},{n:'Descafeinado',d:0},{n:'Dolce',d:0},{n:'Tierra',d:0},{n:'Ricco',d:0},{n:'Café del día',d:0}]}] },
@@ -1206,17 +1206,17 @@ const MENU = [
   { id:'c-cafe-frio',  cat:'cafes', name:'Café frío',       desc:'Cold brew de la casa, suave y aromático.',     price:4500, img:'img/cafe/cafe-frio.png', options:[{group:'Tamaño',required:true,multi:false,items:[{n:'Chico',d:0},{n:'Grande',d:600}]}] },
 
   // BEBIDAS · Infusiones
-  { id:'c-te', cat:'cafes', name:'Té', desc:'En hebras, varias variedades.', price:2500, img:'img/bebidas/te.jpg', options:[{group:'Variedad',required:true,multi:false,items:[{n:'Clásico',d:0},{n:'Durazno',d:0},{n:'Verde',d:0},{n:'Frutilla',d:0}]}] },
+  { id:'c-te', cat:'cafes', name:'Té', desc:'En hebras, varias variedades.', price:1500, img:'img/bebidas/te.jpg', options:[{group:'Variedad',required:true,multi:false,items:[{n:'Clásico',d:0},{n:'Durazno',d:0},{n:'Verde',d:0},{n:'Frutilla',d:0}]}] },
 
   // BEBIDAS · Frías
-  { id:'b-agua',        cat:'bebidas', name:'Agua mineral',  desc:'Natural. 500ml.',              price:1500, img:'img/bebidas/agua.jpg' },
-  { id:'b-coca',        cat:'bebidas', name:'Coca-Cola',     desc:'500ml.',                       price:2000, img:'img/bebidas/coca-cola.jpg' },
-  { id:'b-coca-zero',   cat:'bebidas', name:'Coca-Cola Zero',desc:'500ml.',                       price:2000, img:'img/bebidas/coca-zero.jpg' },
-  { id:'b-sprite',      cat:'bebidas', name:'Sprite',        desc:'500ml.',                       price:1800, img:'img/bebidas/sprite.jpg' },
-  { id:'b-fanta',       cat:'bebidas', name:'Fanta',         desc:'500ml.',                       price:1800, img:'img/bebidas/fanta.jpg' },
-  { id:'b-levite',      cat:'bebidas', name:'Levité',        desc:'Agua saborizada 500ml.',       price:1800, img:'img/bebidas/levite.jpg',       options:[{group:'Sabor',required:true,multi:false,items:[{n:'Naranja',d:0},{n:'Manzana',d:0},{n:'Pomelo',d:0},{n:'Pera',d:0}]}] },
+  { id:'b-agua',        cat:'bebidas', name:'Agua mineral',  desc:'Natural. 500ml.',              price:1300, img:'img/bebidas/agua.jpg' },
+  { id:'b-coca',        cat:'bebidas', name:'Coca-Cola',     desc:'500ml.',                       price:2200, img:'img/bebidas/coca-cola.jpg' },
+  { id:'b-coca-zero',   cat:'bebidas', name:'Coca-Cola Zero',desc:'500ml.',                       price:2200, img:'img/bebidas/coca-zero.jpg' },
+  { id:'b-sprite',      cat:'bebidas', name:'Sprite',        desc:'500ml.',                       price:2200, img:'img/bebidas/sprite.jpg' },
+  { id:'b-fanta',       cat:'bebidas', name:'Fanta',         desc:'500ml.',                       price:2200, img:'img/bebidas/fanta.jpg' },
+  { id:'b-levite',      cat:'bebidas', name:'Levité',        desc:'Agua saborizada 500ml.',       price:2000, img:'img/bebidas/levite.jpg',       options:[{group:'Sabor',required:true,multi:false,items:[{n:'Naranja',d:0},{n:'Manzana',d:0},{n:'Pomelo',d:0},{n:'Pera',d:0}]}] },
   { id:'b-baggio',      cat:'bebidas', name:'Baggio 200ml',  desc:'Jugo en tetra.',               price:1000, img:'img/bebidas/baggio-200.jpg',  options:[{group:'Sabor',required:true,multi:false,items:[{n:'Naranja',d:0},{n:'Manzana',d:0},{n:'Multifruta',d:0}]}] },
-  { id:'b-baggio-1l',   cat:'bebidas', name:'Baggio Multifruta 1 L', desc:'Jugo en botella.', price:null, img:'img/bebidas/baggio-1lt.png' },
+  { id:'b-baggio-1l',   cat:'bebidas', name:'Baggio Multifruta 1 L', desc:'Jugo en botella.', price:2600, img:'img/bebidas/baggio-1lt.png' },
   { id:'b-chocolatada', cat:'bebidas', name:'Chocolatada',   desc:'200ml, en cartón.',            price:1000, img:'img/bebidas/chocolatada.jpg' },
 ];
 
